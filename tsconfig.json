@@ -2,13 +2,18 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "es2015",
+    "moduleResolution": "node",
     "target": "es5",
+    "baseUrl": "./src",
+    "paths": {
+      "@pstudio/*": ["app/*"],
+      "@env/*": ["environments/*"]
+    },
     "typeRoots": [
       "node_modules/@types"
     ],

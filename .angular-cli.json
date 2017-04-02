@@ -7,10 +7,7 @@
     {
       "root": "src",
       "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -19,12 +16,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "pstudio",
       "styles": [
+        "../node_modules/animate.css/animate.min.css",
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.slim.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
+        "staging": "environments/environment.staging.ts",
         "prod": "environments/environment.prod.ts"
       }
     }
