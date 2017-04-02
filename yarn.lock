@@ -134,9 +134,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.0.21", "@freescan/skeleton@^1.0.5":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.21.tgz#ac7480da9734bf1bc770288bd7e23ba952935fde"
+"@freescan/skeleton@^1.0.22", "@freescan/skeleton@^1.0.5":
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.22.tgz#d61a6e4332c3b6a54f9ef666119bd179b95b2675"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"
@@ -255,6 +255,10 @@ angular-oauth2-oidc@^1.0.20:
 angular2-jwt@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/angular2-jwt/-/angular2-jwt-0.2.0.tgz#8ae34d357bbe8eac388d2472d694e9af92d79f40"
+
+animate.css@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.5.2.tgz#91e668dc069a808e5e499514867b97aae0166c36"
 
 ansi-align@^1.1.0:
   version "1.1.0"

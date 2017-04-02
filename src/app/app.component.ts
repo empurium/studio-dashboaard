@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
+
 @Component({
-  selector: 'pstudio-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'pstudio-root',
+    template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
-  title = 'pstudio works!';
 }
