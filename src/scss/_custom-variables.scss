@@ -1,0 +1,203 @@
+// Copy _bootstrap-variables and _custom-variables to your repository
+
+// Import our own custom variables before Bootstrap sets them using !default
+// Then define our own variable customizations after Bootstrap
+
+// Note: Verify correct path on the $navbar-brand-logo
+
+@import './bootstrap-variables';
+@import '~bootstrap/scss/variables';
+
+
+// Bootstrap overrides
+
+$gray-dark:                 #384042;
+$gray:                      #c0c3ca; //#5d76a8;
+$gray-light:                #cfd4dc; //#9faecb;
+$gray-lighter:              #e8ebef; //#c0cadd
+$gray-lightest:             #f9f9fa; //#e1e6ef
+
+$brand-primary: #125345;
+$brand-success: #3cb67c;
+$brand-info: #5dd6ef;
+$brand-warning: #f5af54;
+$brand-danger: #e82626;
+
+$body-bg:                   #f6f6f6;
+
+
+// Core Admin Variables
+
+$enable-sidebar-nav-rounded: false;
+
+$border-color: $gray-lighter;
+$layout-transition-speed: .25s;
+
+
+// Social Colors
+
+$facebook: #3b5998;
+$twitter: #00aced;
+$linkedin: #4875b4;
+$google-plus: #d34836;
+$flickr: #ff0084;
+$tumblr: #32506d;
+$xing: #026466;
+$github: #4183c4;
+$html5: #e34f26;
+$openid: #f78c40;
+$stack-overflow: #fe7a15;
+$youtube: #b00;
+$css3: #0170ba;
+$dribbble: #ea4c89;
+$google-plus: #bb4b39;
+$instagram: #517fa4;
+$pinterest: #cb2027;
+$vk: #45668e;
+$yahoo: #400191;
+$behance: #1769ff;
+$dropbox: #007ee5;
+$reddit: #ff4500;
+$spotify: #7ab800;
+$vine: #00bf8f;
+$foursquare: #1073af;
+$vimeo: #aad450;
+
+// Navbar
+
+$navbar-height:                     60px;
+$navbar-bg:                         #0a345e;
+$navbar-border: (
+    bottom: (
+        size:                       1px,
+        style:                      solid,
+        color:                      $border-color
+    )
+);
+$navbar-brand-width:                250px;
+$navbar-brand-bg:                   $brand-primary;
+// Path links from node_modules/@freescan/skeleton
+// back into the consumer repository!
+$navbar-brand-logo:                 url('../../../../../src/assets/img/publication-studio-logo.png');
+$navbar-brand-logo-size:            180px auto;
+$navbar-brand-border: (
+    bottom: (
+        size:                       1px,
+        style:                      solid,
+        color:                      darken($brand-primary,10%)
+    )
+);
+
+$navbar-color:                      $gray-light;
+$navbar-hover-color:                darken($navbar-color, 10%);
+$navbar-active-color:               darken($navbar-color, 20%);
+$navbar-disabled-color:             lighten($navbar-color, 20%);
+
+// Sidebar
+
+$sidebar-width:                     250px;
+$sidebar-padding:                   0;
+$sidebar-compact-width:             50px;
+$sidebar-compact-height:            $sidebar-compact-width;
+$sidebar-color:                     #fff;
+$sidebar-bg:                        lighten($gray-lighter, 3%);
+$sidebar-header-bg:                 rgba(0,0,0,.2);
+$sidebar-footer-bg:                 rgba(0,0,0,.2);
+$sidebar-borders:                   none;
+$mobile-sidebar-width:              250px;
+
+// Sidebar Navigation
+
+$sidebar-nav-color:                 #fff;
+$sidebar-nav-title-padding-y:       .95rem;
+$sidebar-nav-title-padding-x:       1rem;
+$sidebar-nav-title-color:           $text-muted;
+$sidebar-nav-link-padding-y:        .75rem;
+$sidebar-nav-link-padding-x:        1rem;
+$sidebar-nav-link-color:            $brand-primary;
+$sidebar-nav-link-bg:               transparent;
+$sidebar-nav-link-icon-color:       $brand-primary;
+
+$sidebar-nav-link-borders:          0;
+$sidebar-nav-link-hover-color:      $brand-success;
+$sidebar-nav-link-hover-bg:         darken($sidebar-bg, 5%);
+$sidebar-nav-link-hover-icon-color: $brand-success !important;
+
+$sidebar-nav-link-hover-borders:    0;
+$sidebar-nav-link-active-color:     $brand-success;
+$sidebar-nav-link-active-bg:        darken($sidebar-bg, 5%);
+$sidebar-nav-link-active-icon-color: $brand-primary;
+
+$sidebar-nav-link-active-borders:   0;
+
+$sidebar-nav-dropdown-color:        #fff;
+$sidebar-nav-dropdown-bg:           darken($sidebar-bg, 3%);
+$sidebar-nav-dropdown-borders:      0;
+
+// Top Navigation
+
+$top-nav-bg:                        #fff;
+$top-nav-color:                     $body-color;
+$top-nav-borders: (
+  bottom: (
+    size:                           1px,
+    style:                          solid,
+    color:                          $border-color
+  )
+);
+$top-nav-ul-borders: (
+  all: (
+    size:                           1px,
+    style:                          solid,
+    color:                          $border-color
+  )
+);
+
+$top-nav-hover-color:               #fff;
+$top-nav-hover-bg:                  $brand-primary;
+$top-nav-active-color:              #fff;
+$top-nav-active-bg:                 $brand-primary;
+$top-nav-height:                    $navbar-height - 15px;
+
+// Breadcrumb
+
+$breadcrumb-borders:                0;
+
+// Badges
+
+$badge-padding-y:                   0.55em;
+$badge-padding-x:                   0.55em;
+
+// Aside
+
+$aside-menu-width:                  250px;
+$aside-menu-color:                  $gray-dark;
+$aside-menu-bg:                     #fff;
+$aside-menu-borders: (
+  left: (
+    size:                           1px,
+    style:                          solid,
+    color:                          $border-color
+  )
+);
+
+$aside-menu-nav-padding-y:          .75rem;
+$aside-menu-nav-padding-x:          1rem;
+
+// Footer
+
+$footer-height: 50px;
+$footer-bg:     $gray-lightest;
+$footer-color:  $body-color;
+$footer-borders: (
+  top: (
+    size:                           1px,
+    style:                          solid,
+    color:                          $border-color
+  )
+);
+
+// Cards
+
+$card-icon-bg:                      transparent;
+$card-icon-color:                   $body-color;
