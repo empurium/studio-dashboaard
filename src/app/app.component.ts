@@ -1,21 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '@freescan/skeleton';
+import { FullLayoutComponent, Navigation } from '@freescan/skeleton';
 
 
 @Component({
     selector: 'pstudio-root',
-    template: `<router-outlet></router-outlet>`,
+    template: `<freescan-dashboard [navigation]="nav"></freescan-dashboard>`,
 })
-export class AppComponent implements OnInit {
-    constructor(private authentication: AuthenticationService) {
-    }
+export class AppComponent extends FullLayoutComponent implements OnInit {
+    public nav: Navigation[] = [
+        {
+            routerLink: '/',
+            label:      'Home',
+            icon:       'icon-home',
+        },
+        {
+            label: 'Login',
+            icon:  'icon-login',
+            show:  (): boolean => {
+                return !this.authenticated();
+            },
+            click: (): void => {
+                this.login();
+            },
+        },
+        {
+            routerLink: '/publications',
+            label: 'Publications',
+            icon:  'icon-notebook',
+            show:  (): boolean => {
+                return this.roles.has('dashboard');
+            },
+        },
+    ];
 
-    /**
-     * Attempt to login the user. Essentially checks the URL for an access_token,
-     * saves to local storage, and then removes it from the URL.
-     * Performed in AppComponent to remove from the URL as early as possible.
-     */
     public ngOnInit(): void {
-        this.authentication.attemptLogin();
+        this.attemptLogin();
+
+        this.roles.all().subscribe(
+            (roles: string[]) => { },
+            (error: string) => console.error('ERROR', error),
+        );
     }
 }
