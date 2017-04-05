@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FullLayoutComponent, Navigation } from '@freescan/skeleton';
 
 
@@ -6,7 +6,7 @@ import { FullLayoutComponent, Navigation } from '@freescan/skeleton';
     selector: 'pstudio-root',
     template: `<freescan-dashboard [navigation]="nav"></freescan-dashboard>`,
 })
-export class AppComponent extends FullLayoutComponent {
+export class AppComponent extends FullLayoutComponent implements OnInit {
     public nav: Navigation[] = [
         {
             routerLink: '/',
@@ -23,5 +23,22 @@ export class AppComponent extends FullLayoutComponent {
                 this.login();
             },
         },
+        {
+            routerLink: '/publications',
+            label: 'Publications',
+            icon:  'icon-notebook',
+            show:  (): boolean => {
+                return this.roles.has('dashboard');
+            },
+        },
     ];
+
+    public ngOnInit(): void {
+        this.attemptLogin();
+
+        this.roles.all().subscribe(
+            (roles: string[]) => { },
+            (error: string) => console.error('ERROR', error),
+        );
+    }
 }
