@@ -179,9 +179,9 @@
     ng2-bootstrap "1.4.0"
     ng2-bootstrap-growl "^0.0.5"
 
-"@freescan/skeleton@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.1.6.tgz#2ecb0532c6fc762bbf093429940f8b009fcc19b8"
+"@freescan/skeleton@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.2.1.tgz#44f63d358c3f28c580c9365e61ba8f83401596b3"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"

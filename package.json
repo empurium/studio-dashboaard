@@ -27,7 +27,7 @@
     "@freescan/authentication": "^1.0.7",
     "@freescan/billing": "^1.1.21",
     "@freescan/http": "^1.0.5",
-    "@freescan/skeleton": "^1.1.6",
+    "@freescan/skeleton": "^1.2.1",
     "animate.css": "^3.5.2",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
