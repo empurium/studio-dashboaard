@@ -9,6 +9,10 @@ export const routes: Routes = [
         path:      '',
         component: HomeComponent,
     },
+    {
+        path:      'publications',
+        loadChildren: './articles/articles.module',
+    },
 
     // 404
     {
