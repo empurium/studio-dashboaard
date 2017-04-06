@@ -2,13 +2,14 @@ import { Environment } from '@freescan/skeleton';
 
 export const environment: Environment = {
     production: true,
-    staging: false,
+    staging:    false,
 
     // API URL's
     api: {
-        passport: 'http://passport.freescan.com',
-        cashier:  'http://cashier.freescan.com',
-        files:    'http://files.freescan.com',
+        passport:     'http://passport.freescan.com',
+        cashier:      'http://cashier.freescan.com',
+        files:        'http://files.freescan.com',
+        publications: 'http://finance-api.freescan.com',
     },
 
     passport: {
