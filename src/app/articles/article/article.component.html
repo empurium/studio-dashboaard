@@ -41,15 +41,15 @@
             </div>
 
             <div class="row form-group mb-0">
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-9">
                     <label for="content">Content
                         <span class="text-muted">
                             - visible to <strong>{{ _tier ? _tier.name : 'paid' }}</strong> users
                         </span>
                     </label>
-                    <textarea [(ngModel)]="_article.content" name="content" id="content" rows="15" placeholder="Publication content" class="form-control" required></textarea>
+                    <div [froalaEditor]="froala" [(froalaModel)]="_article.content" id="content"></div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-3">
                     <label for="thumbnail">Thumbnail</label>
                     <img src="{{ _article.image_url }}" class="thumbnail" id="thumbnail" />
                 </div>

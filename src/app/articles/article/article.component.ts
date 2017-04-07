@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
@@ -10,12 +10,16 @@ import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@fr
     selector:    'pstudio-article',
     templateUrl: './article.component.html',
     styleUrls:   ['./article.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit {
     public _article: Article = new Article();
     public _tiers: Tier[];
     public _tier: Tier;
     public loading: boolean = true;
+    public froala: any = {
+        toolbarStickyOffset: 60,
+    };
 
     constructor(private route: ActivatedRoute,
                 private tiers: TierService,

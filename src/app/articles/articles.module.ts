@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
 // Core
 import { ArticlesRoutingModule } from './articles.routing';
@@ -14,6 +15,8 @@ import { ArticleComponent } from './article/article.component';
     imports: [
         CommonModule,
         FormsModule,
+        FroalaEditorModule.forRoot(),
+        FroalaViewModule.forRoot(),
         ArticlesRoutingModule,
     ],
 

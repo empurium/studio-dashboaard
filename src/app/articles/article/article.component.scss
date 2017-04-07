@@ -3,3 +3,32 @@
     max-width: 100%;
   }
 }
+
+/**
+ * Froala Editor
+ * TODO - We will pay for Froala! It is a great editor
+ * and we prefer to pay for good software. Just need funds first.
+ */
+.fr-wrapper + div > a {
+  z-index: -1 !important;
+  background-color: #fff !important;
+  display: none !important;
+}
+.fr-wrapper + div {
+  z-index: -1 !important;
+  display: none !important;
+}
+.fr-toolbar {
+  border-top: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  box-shadow: 0 0 0 rgba(0,0,0,.12), 0 1px 1px 1px rgba(0,0,0,.16);
+  -webkit-box-shadow: 0 0 0 rgba(0,0,0,.12), 0 1px 1px 1px rgba(0,0,0,.16);
+}
+.fr-box.fr-basic.fr-top .fr-wrapper {
+  min-height: 300px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  box-shadow: 0 0 0 rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,.13);
+  -webkit-box-shadow: 0 0 0 rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,.13);
+}
