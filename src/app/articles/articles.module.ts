@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // Core
 import { ArticlesRoutingModule } from './articles.routing';
@@ -12,6 +13,7 @@ import { ArticleComponent } from './article/article.component';
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         ArticlesRoutingModule,
     ],
 

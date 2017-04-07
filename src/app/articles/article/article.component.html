@@ -1,0 +1,54 @@
+<form>
+    <div class="card animated fadeIn" *ngIf="!loading">
+        <div class="card-block">
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <input [(ngModel)]="_article.title" name="title" id="title" type="text" placeholder="Title" class="form-control input-lg" required />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-12 col-md-6">
+                    <label for="image_url">Thumbnail image URL</label>
+                    <div class="input-group">
+                        <input [(ngModel)]="_article.image_url" name="image_url" id="image_url" type="text" placeholder="Image URL" class="form-control" required />
+                        <span class="input-group-btn">
+                          <a href="{{ _article.image_url }}" class="btn btn-primary btn-pointer" target="_blank">
+                              <i class="fa fa-external-link" aria-hidden="true"></i>
+                          </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <label for="tier">Tier for this publication</label>
+                    <select [(ngModel)]="_article.tier" name="tier" id="tier" class="form-control">
+                        <option *ngFor="let tier of _tiers">{{ tier.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <label for="preview">Preview <span class="text-muted">- free content</span></label>
+                    <input [(ngModel)]="_article.preview" name="preview" id="preview" type="text" placeholder="Preview" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row form-group mb-0">
+                <div class="col-sm-12 col-md-8">
+                    <label for="content">Content <span class="text-muted">- Tiered access</span></label>
+                    <textarea [(ngModel)]="_article.content" name="content" id="content" rows="15" placeholder="Publication content" class="form-control" required></textarea>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label for="thumbnail">Thumbnail</label>
+                    <img src="{{ _article.image_url }}" class="thumbnail" id="thumbnail" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-primary btn-pointer btn-lg" (click)="save()">Save</button>
+        </div>
+    </div>
+</form>
