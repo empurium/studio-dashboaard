@@ -8,14 +8,15 @@ export const environment: Environment = {
     api: {
         passport:     'http://staging-passport.freescan.com',
         cashier:      'http://staging-cashier.freescan.com',
+        vinyl:        'http://staging-vinyl.freescan.com',
         files:        'http://staging-files.freescan.com',
         publications: 'http://staging-finance-api.freescan.com',
     },
 
     passport: {
-        login:       'http://staging-passport.freescan.com/authorize',
-        clientId:    '1',
-        redirectURI: 'http://staging-720global.freescan.com',
+        login:       'http://staging-passport.publication.studio/authorize',
+        clientId:    '4',
+        redirectURI: 'http://staging.publication.studio',
         scope:       '',
     },
 };
