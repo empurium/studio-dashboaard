@@ -1,9 +1,9 @@
-<form>
+<form (ngSubmit)="save(form)" #form="ngForm">
     <div class="card animated fadeIn" *ngIf="!loading">
         <div class="card-block">
             <div class="row form-group">
                 <div class="col-sm-12">
-                    <input [(ngModel)]="_article.title" name="title" id="title" type="text" placeholder="Title" class="form-control input-lg" required />
+                    <input [(ngModel)]="_article.title" name="title" id="title" type="text" placeholder="Title" class="form-control input-lg" required minlength="8" />
                 </div>
             </div>
 
@@ -22,7 +22,8 @@
 
                 <div class="col-sm-12 col-md-6">
                     <label for="tier">Tier for this publication</label>
-                    <select [(ngModel)]="_article.tier" name="tier" id="tier" class="form-control">
+                    <select [(ngModel)]="_tier" name="tier" id="tier" class="form-control">
+                        <option value="">Select Tier</option>
                         <option *ngFor="let tier of _tiers">{{ tier.name }}</option>
                     </select>
                 </div>
@@ -30,14 +31,22 @@
 
             <div class="row form-group">
                 <div class="col-sm-12">
-                    <label for="preview">Preview <span class="text-muted">- free content</span></label>
+                    <label for="preview">Preview
+                        <span class="text-muted">
+                            - free content
+                        </span>
+                    </label>
                     <input [(ngModel)]="_article.preview" name="preview" id="preview" type="text" placeholder="Preview" class="form-control" />
                 </div>
             </div>
 
             <div class="row form-group mb-0">
                 <div class="col-sm-12 col-md-8">
-                    <label for="content">Content <span class="text-muted">- Tiered access</span></label>
+                    <label for="content">Content
+                        <span class="text-muted">
+                            - visible to <strong>{{ _tier ? _tier.name : 'paid' }}</strong> users
+                        </span>
+                    </label>
                     <textarea [(ngModel)]="_article.content" name="content" id="content" rows="15" placeholder="Publication content" class="form-control" required></textarea>
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -48,7 +57,9 @@
         </div>
 
         <div class="card-footer">
-            <button class="btn btn-primary btn-pointer btn-lg" (click)="save()">Save</button>
+            <button type="submit" [disabled]="!form.form.valid" class="btn btn-primary btn-pointer btn-lg">
+                Save
+            </button>
         </div>
     </div>
 </form>

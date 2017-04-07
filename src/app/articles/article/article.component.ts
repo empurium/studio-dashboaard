@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
 
@@ -12,6 +14,7 @@ import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@fr
 export class ArticleComponent implements OnInit {
     public _article: Article = new Article();
     public _tiers: Tier[];
+    public _tier: Tier;
     public loading: boolean = true;
 
     constructor(private route: ActivatedRoute,
@@ -49,21 +52,36 @@ export class ArticleComponent implements OnInit {
             });
     }
 
-    public save(): void {
+    /**
+     * Either POST a new article or PUT the new contents.
+     */
+    public save(form: NgForm): void {
+        this.overwrite(form.form.value);
+
         if (!this._article.id) {
             this.articles
                 .post(this._article)
                 .subscribe(
-                    (response: ArticleResponse) => console.log('put()', response),
+                    (response: ArticleResponse) => this._article = response.data,
                     (error: string) => console.error(error),
                 );
+            return;
         }
 
         this.articles
             .put(this._article)
             .subscribe(
-                (response: ArticleResponse) => console.log('put()', response),
+                () => {},
                 (error: string) => console.error(error),
             );
+    }
+
+    /**
+     * Overwrites the values from the form to the Article model before submission.
+     */
+    public overwrite(values: Article): void {
+        _.each(values, (value: any, key: string) => {
+            this._article[key] = value;
+        });
     }
 }
