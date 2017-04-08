@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
@@ -13,17 +13,18 @@ import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@fr
     encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit {
-    public _article: Article = new Article();
-    public _tiers: Tier[];
-    public _tier: Tier;
+    public article: Article = new Article();
+    public tiers: Tier[];
+    public tier: Tier;
     public loading: boolean = true;
     public froala: any = {
         toolbarStickyOffset: 60,
     };
 
     constructor(private route: ActivatedRoute,
-                private tiers: TierService,
-                private articles: ArticleService) {
+                private router: Router,
+                private tierService: TierService,
+                private articleService: ArticleService) {
     }
 
     public ngOnInit(): void {
@@ -35,8 +36,8 @@ export class ArticleComponent implements OnInit {
      * Request the tiers for this white label so they can assign articles to them.
      */
     public loadTiers(): void {
-        this.tiers.all().subscribe(
-            (tiers: Tier[]) => this._tiers = tiers,
+        this.tierService.all().subscribe(
+            (tiers: Tier[]) => this.tiers = tiers,
             (error: string) => console.error(error),
         );
     }
@@ -48,11 +49,11 @@ export class ArticleComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => {
                 this.loading = !!params.id;
-                return params.id ? this.articles.one(params.id) : Observable.empty();
+                return params.id ? this.articleService.one(params.id) : Observable.empty();
             })
             .subscribe((response: ArticleResponse) => {
                 this.loading = false;
-                this._article = response.data;
+                this.article = response.data;
             });
     }
 
@@ -62,18 +63,18 @@ export class ArticleComponent implements OnInit {
     public save(form: NgForm): void {
         this.overwrite(form.form.value);
 
-        if (!this._article.id) {
-            this.articles
-                .post(this._article)
+        if (!this.article.id) {
+            this.articleService
+                .post(this.article)
                 .subscribe(
-                    (response: ArticleResponse) => this._article = response.data,
+                    (response: ArticleResponse) => this.article = response.data,
                     (error: string) => console.error(error),
                 );
             return;
         }
 
-        this.articles
-            .put(this._article)
+        this.articleService
+            .put(this.article)
             .subscribe(
                 () => {},
                 (error: string) => console.error(error),
@@ -81,11 +82,18 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
+     * Cancel the edit and navigate back.
+     */
+    public cancel(): void {
+        this.router.navigate(['publications']);
+    }
+
+    /**
      * Overwrites the values from the form to the Article model before submission.
      */
-    public overwrite(values: Article): void {
+    private overwrite(values: Article): void {
         _.each(values, (value: any, key: string) => {
-            this._article[key] = value;
+            this.article[key] = value;
         });
     }
 }

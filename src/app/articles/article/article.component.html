@@ -3,7 +3,7 @@
         <div class="card-block">
             <div class="row form-group">
                 <div class="col-sm-12">
-                    <input [(ngModel)]="_article.title" name="title" id="title" type="text" placeholder="Title" class="form-control input-lg" required minlength="8" />
+                    <input [(ngModel)]="article.title" name="title" id="title" type="text" placeholder="Title" class="form-control input-lg" required minlength="8" />
                 </div>
             </div>
 
@@ -11,9 +11,9 @@
                 <div class="col-sm-12 col-md-6">
                     <label for="image_url">Thumbnail image URL</label>
                     <div class="input-group">
-                        <input [(ngModel)]="_article.image_url" name="image_url" id="image_url" type="text" placeholder="Image URL" class="form-control" required />
+                        <input [(ngModel)]="article.image_url" name="image_url" id="image_url" type="text" placeholder="Image URL" class="form-control" required />
                         <span class="input-group-btn">
-                          <a href="{{ _article.image_url }}" class="btn btn-primary btn-pointer" target="_blank">
+                          <a href="{{ article.image_url }}" class="btn btn-primary btn-pointer" target="_blank">
                               <i class="fa fa-external-link" aria-hidden="true"></i>
                           </a>
                         </span>
@@ -22,9 +22,9 @@
 
                 <div class="col-sm-12 col-md-6">
                     <label for="tier">Tier for this publication</label>
-                    <select [(ngModel)]="_tier" name="tier" id="tier" class="form-control">
+                    <select [(ngModel)]="tier" name="tier" id="tier" class="form-control">
                         <option value="">Select Tier</option>
-                        <option *ngFor="let tier of _tiers">{{ tier.name }}</option>
+                        <option *ngFor="let tier of tiers">{{ tier.name }}</option>
                     </select>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                             - free content
                         </span>
                     </label>
-                    <input [(ngModel)]="_article.preview" name="preview" id="preview" type="text" placeholder="Preview" class="form-control" />
+                    <input [(ngModel)]="article.preview" name="preview" id="preview" type="text" placeholder="Preview" class="form-control" />
                 </div>
             </div>
 
@@ -44,22 +44,33 @@
                 <div class="col-sm-12 col-md-9">
                     <label for="content">Content
                         <span class="text-muted">
-                            - visible to <strong>{{ _tier ? _tier.name : 'paid' }}</strong> users
+                            - visible to <strong>{{ tier ? tier.name : 'paid' }}</strong> users
                         </span>
                     </label>
-                    <div [froalaEditor]="froala" [(froalaModel)]="_article.content" id="content"></div>
+                    <div [froalaEditor]="froala" [(froalaModel)]="article.content" id="content"></div>
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <label for="thumbnail">Thumbnail</label>
-                    <img src="{{ _article.image_url }}" class="thumbnail" id="thumbnail" />
+                    <img *ngIf="article.image_url" src="{{ article.image_url }}" class="thumbnail" id="thumbnail" />
+                    <div *ngIf="!article.image_url" class="text-danger">None</div>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
-            <button type="submit" [disabled]="!form.form.valid" class="btn btn-primary btn-pointer btn-lg">
-                Save
-            </button>
+            <div class="row">
+                <div class="col-sm-6">
+                    <button (click)="cancel()" class="btn btn-secondary btn-pointer btn-lg">
+                        Cancel
+                    </button>
+                </div>
+
+                <div class="col-sm-6 text-right">
+                    <button type="submit" [disabled]="!form.form.valid" class="btn btn-primary btn-pointer btn-lg">
+                        Save
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </form>
