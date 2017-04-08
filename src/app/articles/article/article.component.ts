@@ -72,7 +72,7 @@ export class ArticleComponent implements OnInit {
                         this.alerts.success(null, 'Article has been saved.');
                         this.article = response.data;
                     },
-                    (error: any) => this.alerts.error(error.message, `${error.status} - ${error.statusText}`),
+                    (error: any) => this.alerts.errorMessage(error),
                 );
             return;
         }
@@ -81,7 +81,7 @@ export class ArticleComponent implements OnInit {
             .put(this.article)
             .subscribe(
                 (response: ArticleResponse) => this.alerts.success(null, 'Article has been saved.'),
-                (error: any) => this.alerts.error(error.message, `${error.status} - ${error.statusText}`),
+                (error: any) => this.alerts.errorMessage(error),
             );
     }
 
