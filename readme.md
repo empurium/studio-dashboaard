@@ -12,6 +12,7 @@
 brew install nvm yarn
 nvm install 6
 nvm alias default 6
+sudo echo '127.0.0.1 publication.studio.local' >> /etc/hosts
 ```
 
 ### Repository Setup
