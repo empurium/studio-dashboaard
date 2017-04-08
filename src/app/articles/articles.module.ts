@@ -25,5 +25,5 @@ import { ArticleComponent } from './article/article.component';
         ArticleComponent,
     ],
 })
-export default class ArticlesModule {
+export class ArticlesModule {
 }

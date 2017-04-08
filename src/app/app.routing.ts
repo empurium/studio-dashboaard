@@ -11,7 +11,7 @@ export const routes: Routes = [
     },
     {
         path:      'publications',
-        loadChildren: './articles/articles.module',
+        loadChildren: './articles/articles.module#ArticlesModule',
     },
 
     // 404
