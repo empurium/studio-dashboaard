@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs';
 import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
 
@@ -23,6 +24,7 @@ export class ArticleComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private toastr: ToastsManager,
                 private tierService: TierService,
                 private articleService: ArticleService) {
     }
@@ -38,7 +40,7 @@ export class ArticleComponent implements OnInit {
     public loadTiers(): void {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => console.error(error),
+            (error: string) => this.toastr.error('Error', error),
         );
     }
 
@@ -67,8 +69,11 @@ export class ArticleComponent implements OnInit {
             this.articleService
                 .post(this.article)
                 .subscribe(
-                    (response: ArticleResponse) => this.article = response.data,
-                    (error: string) => console.error(error),
+                    (response: ArticleResponse) => {
+                        this.toastr.success(null, 'Article has been saved.');
+                        this.article = response.data;
+                    },
+                    (error: any) => this.toastr.error(null, error),
                 );
             return;
         }
@@ -76,8 +81,8 @@ export class ArticleComponent implements OnInit {
         this.articleService
             .put(this.article)
             .subscribe(
-                () => {},
-                (error: string) => console.error(error),
+                (response: ArticleResponse) => this.toastr.success(null, 'Article has been saved.'),
+                (error: string) => this.toastr.error(null, error),
             );
     }
 
