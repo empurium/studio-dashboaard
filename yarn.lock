@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@angular/animations@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.0.1.tgz#154420c8ee5c22fbaf1434b6d156150cf5218da6"
+
 "@angular/cli@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.0.0.tgz#7bfde1e7c5f28bf5bed4dda1352ee67ee887302f"
@@ -112,17 +116,9 @@
   dependencies:
     tsickle "^0.21.0"
 
-"@freescan/authentication@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.9.tgz#86f3684eff2e8d5cde686f69b9b3733273eea167"
-  dependencies:
-    "@freescan/skeleton" "^1.2.9"
-    angular-oauth2-oidc "^1.0.20"
-    angular2-jwt "^0.2.0"
-
-"@freescan/http@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@freescan/http/-/http-1.0.6.tgz#6a14c595a2e7fad63a3992d2288b7bb04f36ed04"
+"@freescan/http@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@freescan/http/-/http-1.1.0.tgz#212690d341ad671a69b64090572ac4cfcdb33133"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"
@@ -130,17 +126,18 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.2.9", "@freescan/skeleton@^1.3.3":
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.3.3.tgz#648626e5f1af3a1bd6763fec8dda9fd45465fa44"
+"@freescan/skeleton@^1.3.9":
+  version "1.3.9"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.3.9.tgz#8d55e18e6c9e4804548388acddc0b8204f142802"
   dependencies:
+    "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"
     "@angular/core" "^4.0.1"
     "@angular/forms" "^4.0.1"
     "@angular/http" "^4.0.1"
     "@angular/platform-browser" "^4.0.1"
     "@angular/router" "^4.0.1"
-    "@freescan/http" "^1.0.6"
+    "@freescan/http" "^1.1.0"
     angular-oauth2-oidc "^1.0.20"
     angular2-jwt "^0.2.0"
     animate.css "^3.5.2"
@@ -1476,8 +1473,8 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.2.7:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.2.tgz#b8ce5c93b308db0e92f6d0435c46ddec8f6363ab"
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.3.tgz#651eb63fe89f39db70ffc8dbd5d9b66958bc6a0e"
 
 elliptic@^6.0.0:
   version "6.4.0"
@@ -3059,13 +3056,17 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimist@0.0.8, minimist@~0.0.1:
+minimist@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
 minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
+
+minimist@~0.0.1:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
 mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"
@@ -3284,13 +3285,9 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
-object-assign@4.1.0:
+object-assign@4.1.0, object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.0.tgz#7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0"
-
-object-assign@^4.0.1, object-assign@^4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
 object-component@0.0.3:
   version "0.0.3"
@@ -3951,8 +3948,8 @@ readable-stream@1.0, readable-stream@~1.0.2:
     string_decoder "~0.10.x"
 
 "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.1.4, readable-stream@^2.2.6:
-  version "2.2.8"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.8.tgz#ad28b686f3554c73d39bc32347fa058356624705"
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.9.tgz#cf78ec6f4a6d1eb43d26488cac97f042e74b7fc8"
   dependencies:
     buffer-shims "~1.0.0"
     core-util-is "~1.0.0"
@@ -4704,13 +4701,13 @@ tmp@0.0.24:
   version "0.0.24"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.24.tgz#d6a5e198d14a9835cc6f2d7c3d9e302428c8cf12"
 
-tmp@0.0.28:
+tmp@0.0.28, tmp@0.0.x:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.28.tgz#172735b7f614ea7af39664fa84cf0de4e515d120"
   dependencies:
     os-tmpdir "~1.0.1"
 
-tmp@0.0.30, tmp@0.0.x:
+tmp@0.0.30:
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.30.tgz#72419d4a8be7d6ce75148fd8b324e593a711c2ed"
   dependencies:

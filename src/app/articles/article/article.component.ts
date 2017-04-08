@@ -2,9 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs';
-import { ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
+import { AlertService, ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class ArticleComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private toastr: ToastsManager,
+                private alerts: AlertService,
                 private tierService: TierService,
                 private articleService: ArticleService) {
     }
@@ -40,7 +39,7 @@ export class ArticleComponent implements OnInit {
     public loadTiers(): void {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => this.toastr.error('Error', error),
+            (error: string) => this.alerts.error('Error', error),
         );
     }
 
@@ -70,10 +69,10 @@ export class ArticleComponent implements OnInit {
                 .post(this.article)
                 .subscribe(
                     (response: ArticleResponse) => {
-                        this.toastr.success(null, 'Article has been saved.');
+                        this.alerts.success(null, 'Article has been saved.');
                         this.article = response.data;
                     },
-                    (error: any) => this.toastr.error(null, error),
+                    (error: any) => this.alerts.error(error.message, `${error.status} - ${error.statusText}`),
                 );
             return;
         }
@@ -81,8 +80,8 @@ export class ArticleComponent implements OnInit {
         this.articleService
             .put(this.article)
             .subscribe(
-                (response: ArticleResponse) => this.toastr.success(null, 'Article has been saved.'),
-                (error: string) => this.toastr.error(null, error),
+                (response: ArticleResponse) => this.alerts.success(null, 'Article has been saved.'),
+                (error: any) => this.alerts.error(error.message, `${error.status} - ${error.statusText}`),
             );
     }
 
