@@ -7,20 +7,20 @@
 <div class="card animated fadeIn" *ngFor="let article of _articles">
     <div class="card-block">
         <div class="row">
-            <div class="col-sm-12 col-md-4 mb-2">
-                <img src="{{ article.image_url }}" class="thumbnail" />
+            <div class="col-sm-12 col-md-3">
+                <a routerLink="edit/{{ article.id }}">
+                    <img src="{{ article.image_url }}" class="thumbnail" />
+                </a>
             </div>
-            <div class="col-sm-12 col-md-8 mb-2">
+            <div class="col-sm-12 col-md-9">
                 <h5 class="card-title mb-0">
                     <a routerLink="edit/{{ article.id }}">{{ article.title }}</a>
                 </h5>
                 <div class="small text-muted">{{ article.published_at | date:'medium' }}</div>
-            </div>
-        </div>
 
-        <div class="col-sm-12">
-            <p>{{ article.previw }}</p>
-            <p>{{ article.content }}</p>
+                <p>{{ article.preview }}</p>
+                <p>{{ article.content }}</p>
+            </div>
         </div>
     </div>
 </div>
