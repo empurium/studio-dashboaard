@@ -27,7 +27,7 @@
     "@freescan/authentication": "^1.0.9",
     "@freescan/billing": "^1.1.23",
     "@freescan/http": "^1.0.6",
-    "@freescan/skeleton": "^1.2.9",
+    "@freescan/skeleton": "^1.2.10",
     "angular2-froala-wysiwyg": "^2.5.1-2",
     "animate.css": "^3.5.2",
     "core-js": "^2.4.1",

@@ -149,6 +149,22 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
+"@freescan/skeleton@^1.2.10":
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.2.10.tgz#eaa7eada60fec1bd530e1a734b482b635b3c02de"
+  dependencies:
+    "@angular/core" "^4.0.0"
+    "@angular/http" "^4.0.0"
+    "@angular/platform-browser" "^4.0.0"
+    "@angular/router" "^4.0.0"
+    "@freescan/http" "^1.0.6"
+    angular-oauth2-oidc "^1.0.20"
+    angular2-jwt "^0.2.0"
+    animate.css "^3.5.2"
+    bootstrap "4.0.0-alpha.6"
+    ng2-bootstrap "1.4.0"
+    ng2-bootstrap-growl "^0.0.5"
+
 "@freescan/skeleton@^1.2.9":
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.2.9.tgz#a7fc65cee49c0e8f62f26c7db1c63e5654280be9"
