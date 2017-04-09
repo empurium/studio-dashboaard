@@ -90,6 +90,7 @@ export class ArticleComponent implements OnInit {
                     (response: ArticleResponse) => {
                         this.article = response.data;
                         this.alerts.success(null, 'Article has been saved.');
+                        this.router.navigate([`../edit/${this.article.id}`], { relativeTo: this.route });
                     },
                     (error: any) => this.alerts.errorMessage(error),
                 );
