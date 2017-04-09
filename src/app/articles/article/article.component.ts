@@ -78,7 +78,7 @@ export class ArticleComponent implements OnInit {
     /**
      * Either POST a new article or PUT the new contents.
      */
-    public save(form: NgForm): void {
+    public store(form: NgForm): void {
         this.saving = true;
         this.overwrite(form.form.value);
 
