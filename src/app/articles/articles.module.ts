@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { FreeScanModule } from '@freescan/skeleton';
 
 // Core
 import { ArticlesRoutingModule } from './articles.routing';
@@ -17,6 +18,8 @@ import { ArticleComponent } from './article/article.component';
         FormsModule,
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot(),
+
+        FreeScanModule,
         ArticlesRoutingModule,
     ],
 

@@ -19,7 +19,7 @@
                 <div class="small text-muted">{{ article.published_at | date:'medium' }}</div>
 
                 <p>{{ article.preview }}</p>
-                <p>{{ article.content }}</p>
+                <p [innerHTML]="article.content | freescanSanitizeHtml"></p>
             </div>
         </div>
     </div>
