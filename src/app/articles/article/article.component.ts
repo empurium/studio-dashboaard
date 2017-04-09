@@ -2,22 +2,24 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { AlertService, ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
 
 
 @Component({
-    selector:    'pstudio-article',
-    templateUrl: './article.component.html',
-    styleUrls:   ['./article.component.scss'],
+    selector:      'pstudio-article',
+    templateUrl:   './article.component.html',
+    styleUrls:     ['./article.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit {
-    public article: Article = new Article();
+    public article: Article     = new Article();
     public tiers: Tier[];
     public tier: Tier;
-    public loading: boolean = true;
-    public froala: any = {
+    public loading: boolean     = true;
+    public momentPublished: any = moment();
+    public froala: any          = {
         toolbarStickyOffset: 60,
     };
 
@@ -59,6 +61,20 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
+     * Cancel the edit and navigate back.
+     */
+    public cancel(): void {
+        this.router.navigate(['publications']);
+    }
+
+    /**
+     * Convert the published_at date the user entered to UTC for the API.
+     */
+    public setPublishedAt(datetime: string): void {
+        this.article.published_at = moment(datetime).utc().format('YYYY-MM-DD\THH:mm:ssZZ');
+    }
+
+    /**
      * Either POST a new article or PUT the new contents.
      */
     public save(form: NgForm): void {
@@ -83,13 +99,6 @@ export class ArticleComponent implements OnInit {
                 (response: ArticleResponse) => this.alerts.success(null, 'Article has been saved.'),
                 (error: any) => this.alerts.errorMessage(error),
             );
-    }
-
-    /**
-     * Cancel the edit and navigate back.
-     */
-    public cancel(): void {
-        this.router.navigate(['publications']);
     }
 
     /**

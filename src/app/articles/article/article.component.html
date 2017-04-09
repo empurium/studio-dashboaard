@@ -20,12 +20,28 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-6">
-                    <label for="tier">Tier for this publication</label>
+                <div class="col-sm-12 col-md-3">
+                    <label for="tier">Payment Tier</label>
                     <select [(ngModel)]="tier" name="tier" id="tier" class="form-control">
                         <option value="">Select Tier</option>
                         <option *ngFor="let tier of tiers">{{ tier.name }}</option>
                     </select>
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <label for="published_at">Published At</label>
+                    <input name="momentPublished"
+                           [ngModel]="momentPublished | date: 'short'"
+                           [(dateTimePicker)]="momentPublished"
+                           [pickerType]="'both'"
+                           [mode]="'dropdown'"
+                           [hourTime]="'12'"
+                           (dateTimePickerChange)="setPublishedAt($event)"
+                           id="published_at"
+                           type="datetime"
+                           class="form-control"
+                           readonly
+                           required />
                 </div>
             </div>
 
