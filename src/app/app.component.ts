@@ -9,9 +9,10 @@ import { DashboardComponent, Navigation } from '@freescan/skeleton';
 export class AppComponent extends DashboardComponent implements OnInit {
     public nav: Navigation[] = [
         {
-            routerLink: '/',
-            label:      'Home',
-            icon:       'icon-home',
+            routerLink:  '/',
+            label:       'Home',
+            icon:        'icon-home',
+            exactActive: true,
         },
         {
             label: 'Login',
@@ -25,9 +26,9 @@ export class AppComponent extends DashboardComponent implements OnInit {
         },
         {
             routerLink: '/publications',
-            label: 'Publications',
-            icon:  'icon-notebook',
-            show:  (): boolean => {
+            label:      'Publications',
+            icon:       'icon-notebook',
+            show:       (): boolean => {
                 return this.roles.has('dashboard');
             },
         },
@@ -38,7 +39,7 @@ export class AppComponent extends DashboardComponent implements OnInit {
 
         this.roles.all().subscribe(
             (roles: string[]) => { },
-            (error: string) => console.error('ERROR', error),
+            (error: string) => console.error(error),
         );
     }
 }
