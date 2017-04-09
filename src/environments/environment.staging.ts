@@ -6,11 +6,11 @@ export const environment: Environment = {
 
     // API URL's
     api: {
-        passport:     'http://staging-passport.freescan.com',
+        passport:     'http://staging-passport.publication.studio',
         cashier:      'http://staging-cashier.freescan.com',
         vinyl:        'http://staging-vinyl.freescan.com',
         files:        'http://staging-files.freescan.com',
-        publications: 'http://staging-finance-api.publication.studio',
+        publications: 'http://staging-publication-api.publication.studio',
     },
 
     passport: {

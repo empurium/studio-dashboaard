@@ -15,7 +15,7 @@ export const environment: Environment = {
         vinyl:        'http://vinyl.freescan.local',
         cashier:      'http://cashier.freescan.local',
         files:        'http://files.freescan.local',
-        publications: 'http://finance-api.freescan.local',
+        publications: 'http://publication-api.freescan.local',
     },
 
     passport: {
