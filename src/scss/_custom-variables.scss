@@ -80,13 +80,7 @@ $navbar-brand-bg:                   $brand-primary;
 // back into the consumer repository!
 $navbar-brand-logo:                 url('../../../../../src/assets/img/publication-studio-logo-small.png');
 $navbar-brand-logo-size:            180px auto;
-$navbar-brand-border: (
-    bottom: (
-        size:                       1px,
-        style:                      solid,
-        color:                      darken($brand-primary,10%)
-    )
-);
+$navbar-brand-border:               none;
 
 $navbar-color:                      $gray-dark;
 $navbar-hover-color:                darken($navbar-color, 10%);
