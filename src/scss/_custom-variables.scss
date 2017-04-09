@@ -12,15 +12,15 @@
 // Bootstrap overrides
 
 $gray-dark:                 #384042;
-$gray:                      #c0c3ca; //#5d76a8;
-$gray-light:                #cfd4dc; //#9faecb;
+$gray:                      #90939a; //#5d76a8;
+$gray-light:                #adb2ba; //#9faecb;
 $gray-lighter:              #e8ebef; //#c0cadd
 $gray-lightest:             #f9f9fa; //#e1e6ef
 
-$brand-primary: #125345;
-$brand-success: #3cb67c;
-$brand-info: #5dd6ef;
-$brand-warning: #f5af54;
+$brand-primary: #3274ab;
+$brand-success: #32ab4c;
+$brand-info: #59b0da;
+$brand-warning: #FFA234;
 $brand-danger: #e82626;
 
 $body-bg:                   #f6f6f6;
@@ -66,7 +66,7 @@ $vimeo: #aad450;
 // Navbar
 
 $navbar-height:                     60px;
-$navbar-bg:                         #0d3c32;
+$navbar-bg:                         #59b0da;
 $navbar-border: (
     bottom: (
         size:                       1px,
@@ -78,7 +78,7 @@ $navbar-brand-width:                250px;
 $navbar-brand-bg:                   $brand-primary;
 // Path links from node_modules/@freescan/skeleton
 // back into the consumer repository!
-$navbar-brand-logo:                 url('../../../../../src/assets/img/publication-studio-logo.png');
+$navbar-brand-logo:                 url('../../../../../src/assets/img/publication-studio-logo-small.png');
 $navbar-brand-logo-size:            180px auto;
 $navbar-brand-border: (
     bottom: (
@@ -88,7 +88,7 @@ $navbar-brand-border: (
     )
 );
 
-$navbar-color:                      $gray-light;
+$navbar-color:                      $gray-dark;
 $navbar-hover-color:                darken($navbar-color, 10%);
 $navbar-active-color:               darken($navbar-color, 20%);
 $navbar-disabled-color:             lighten($navbar-color, 20%);
@@ -119,12 +119,12 @@ $sidebar-nav-link-bg:               transparent;
 $sidebar-nav-link-icon-color:       $brand-primary;
 
 $sidebar-nav-link-borders:          0;
-$sidebar-nav-link-hover-color:      $brand-success;
+$sidebar-nav-link-hover-color:      darken($brand-primary, 15%);
 $sidebar-nav-link-hover-bg:         darken($sidebar-bg, 5%);
-$sidebar-nav-link-hover-icon-color: $brand-success !important;
+$sidebar-nav-link-hover-icon-color: darken($brand-primary, 15%) !important;
 
 $sidebar-nav-link-hover-borders:    0;
-$sidebar-nav-link-active-color:     $brand-success;
+$sidebar-nav-link-active-color:     $brand-primary;
 $sidebar-nav-link-active-bg:        darken($sidebar-bg, 5%);
 $sidebar-nav-link-active-icon-color: $brand-primary;
 
