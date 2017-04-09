@@ -16,7 +16,7 @@
                 <h5 class="card-title mb-0">
                     <a routerLink="edit/{{ article.id }}">{{ article.title }}</a>
                 </h5>
-                <div class="small text-muted">{{ article.published_at | date:'medium' }}</div>
+                <div class="small text-muted">{{ article.published_at }}</div>
 
                 <p>{{ article.preview }}</p>
                 <p [innerHTML]="article.content | freescanSanitizeHtml"></p>
