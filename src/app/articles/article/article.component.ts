@@ -18,6 +18,7 @@ export class ArticleComponent implements OnInit {
     public tiers: Tier[];
     public tier: Tier;
     public loading: boolean     = true;
+    public saving: boolean      = false;
     public momentPublished: any = moment();
     public froala: any          = {
         toolbarStickyOffset: 60,
@@ -78,15 +79,17 @@ export class ArticleComponent implements OnInit {
      * Either POST a new article or PUT the new contents.
      */
     public save(form: NgForm): void {
+        this.saving = true;
         this.overwrite(form.form.value);
 
         if (!this.article.id) {
             this.articleService
                 .post(this.article)
+                .finally(() => this.saving = false)
                 .subscribe(
                     (response: ArticleResponse) => {
-                        this.alerts.success(null, 'Article has been saved.');
                         this.article = response.data;
+                        this.alerts.success(null, 'Article has been saved.');
                     },
                     (error: any) => this.alerts.errorMessage(error),
                 );
@@ -95,8 +98,11 @@ export class ArticleComponent implements OnInit {
 
         this.articleService
             .put(this.article)
+            .finally(() => this.saving = false)
             .subscribe(
-                (response: ArticleResponse) => this.alerts.success(null, 'Article has been saved.'),
+                (response: ArticleResponse) => {
+                    this.alerts.success(null, 'Article has been saved.');
+                },
                 (error: any) => this.alerts.errorMessage(error),
             );
     }
