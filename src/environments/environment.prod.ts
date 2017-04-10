@@ -10,7 +10,7 @@ export const environment: Environment = {
         cashier:      'http://cashier.freescan.com',
         vinyl:        'http://vinyl.freescan.com',
         files:        'http://files.freescan.com',
-        publications: 'http://finance-api.freescan.com',
+        publications: 'http://api.publication.studio',
     },
 
     passport: {
