@@ -7,9 +7,9 @@ export const environment: Environment = {
     // API URL's
     api: {
         passport:     'http://passport.publication.studio',
-        cashier:      'http://cashier.freescan.com',
-        vinyl:        'http://vinyl.freescan.com',
-        files:        'http://files.freescan.com',
+        cashier:      'http://cashier-api.publication.studio',
+        vinyl:        'http://vinyl-api.publication.studio',
+        files:        'http://files-api.publication.studio',
         publications: 'http://api.publication.studio',
     },
 

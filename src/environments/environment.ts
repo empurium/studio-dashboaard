@@ -12,10 +12,10 @@ export const environment: Environment = {
     // API URL's
     api: {
         passport:     'http://passport.publication.studio.local',
-        vinyl:        'http://vinyl.freescan.local',
-        cashier:      'http://cashier.freescan.local',
-        files:        'http://files.freescan.local',
-        publications: 'http://publication-api.freescan.local',
+        vinyl:        'http://vinyl-api.publication.studio.local',
+        cashier:      'http://cashier-api.publication.studio.local',
+        files:        'http://files-api.publication.studio.local',
+        publications: 'http://publication-api.publication.studio.local',
     },
 
     passport: {
