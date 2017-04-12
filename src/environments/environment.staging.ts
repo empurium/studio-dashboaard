@@ -10,7 +10,7 @@ export const environment: Environment = {
         cashier:      'http://staging-cashier.publication.studio',
         vinyl:        'http://staging-vinyl.publication.studio',
         files:        'http://staging-files.publication.studio',
-        publications: 'http://staging-publication-api.publication.studio',
+        publications: 'http://staging-publication.publication.studio',
     },
 
     passport: {
