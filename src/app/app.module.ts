@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardModule, FreeScanModule } from '@freescan/skeleton';
+import { DashboardModule, StudioModule, ArticlesModule } from '@freescan/skeleton';
 
 // Core
 import { environment } from '@env/environment';
@@ -18,7 +18,8 @@ import { HomeComponent } from './home/home.component';
         BrowserAnimationsModule,
 
         AppRoutingModule,
-        FreeScanModule.forRoot(environment),
+        StudioModule.forRoot(environment),
+        ArticlesModule.forRoot(environment),
         DashboardModule,
     ],
 

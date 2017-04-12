@@ -4,7 +4,7 @@ import { DashboardComponent, Navigation } from '@freescan/skeleton';
 
 @Component({
     selector: 'pstudio-root',
-    template: `<freescan-dashboard [navigation]="nav"></freescan-dashboard>`,
+    template: `<studio-dashboard [navigation]="nav"></studio-dashboard>`,
 })
 export class AppComponent extends DashboardComponent implements OnInit {
     public nav: Navigation[] = [
