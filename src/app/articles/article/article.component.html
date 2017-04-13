@@ -23,7 +23,7 @@
                 <div class="col-sm-12 col-md-3">
                     <label for="tier">Payment Tier</label>
                     <select [(ngModel)]="tier" name="tier" id="tier" class="form-control">
-                        <option value="">Select Tier</option>
+                        <option value="">Free</option>
                         <option *ngFor="let tier of tiers">{{ tier.name }}</option>
                     </select>
                 </div>
