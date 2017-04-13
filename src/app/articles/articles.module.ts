@@ -8,7 +8,7 @@ import { StudioModule } from '@freescan/skeleton';
 import { ArticlesRoutingModule } from './articles.routing';
 
 // Components
-import { ArticlesComponent } from './articles.component';
+import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 
 
