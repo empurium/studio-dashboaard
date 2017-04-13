@@ -1,11 +1,11 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `angular-cli.json`.
+import { Environment, VinylService } from '@freescan/skeleton';
 
-import { Environment } from '@freescan/skeleton';
+// VinylService determines our domain so that we can
+// host anybody on studio.company.com and hit the correct API's
+const vinyl: VinylService = new VinylService();
+const domain: string      = vinyl.domain();
 
-export const environment: Environment = {
+const env: Environment = {
     production: false,
     staging:    false,
 
@@ -20,8 +20,17 @@ export const environment: Environment = {
 
     passport: {
         login:       'http://passport.publication.studio.local/authorize',
-        clientId:    '4',
+        clientId:    '4', // TODO - oh fuck
         redirectURI: 'http://publication.studio.local:5001',
         scope:       '',
     },
 };
+
+// Set the API URL's based on the domain
+env.api.vinyl        = `http://vinyl.${domain}`;
+env.api.cashier      = `http://cashier.${domain}`;
+env.api.files        = `http://files.${domain}`;
+env.api.publications = `http://publication.${domain}`;
+
+
+export const environment: Environment = env;
