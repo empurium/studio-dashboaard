@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { AlertService, ArticleService, Article, ArticlesResponse } from '@freescan/skeleton';
 
 
@@ -19,5 +20,12 @@ export class ArticlesComponent implements OnInit {
             (response: ArticlesResponse) => this._articles = response.data,
             (error: any) => this.alerts.errorMessage(error),
         );
+    }
+
+    /**
+     * Relative time since the article was posted.
+     */
+    public published(article: Article): string {
+        return moment.utc(article.published_at).fromNow();
     }
 }
