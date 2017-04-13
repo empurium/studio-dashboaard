@@ -126,9 +126,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.5.5.tgz#0e6edf165c3f495cffeb423ee6d0632bf7b2de25"
+"@freescan/skeleton@^1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.6.4.tgz#5b35854dc4995960c37bb1c389397bf7f8759e54"
   dependencies:
     "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"
@@ -145,7 +145,7 @@
     moment "^2.18.1"
     ng-pick-datetime "^4.0.3"
     ng2-toastr "^4.0.1"
-    ngx-bootstrap "^1.6.3"
+    ngx-bootstrap "1.6.6"
     zone.js "^0.8.5"
 
 "@ngtools/json-schema@1.0.5":
@@ -3116,9 +3116,9 @@ ng2-toastr@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/ng2-toastr/-/ng2-toastr-4.0.1.tgz#87d5ea60e4fd0ff3626980a3c1bd9c76dc06bfdc"
 
-ngx-bootstrap@^1.6.3:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-1.6.5.tgz#cb5b2d1af5828a24fe049e0942a4899cdfea4e9c"
+ngx-bootstrap@1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-1.6.6.tgz#0057141cfbdd7e8a50e81bda735fad8e95acb0dd"
   dependencies:
     moment "2.18.1"
 
