@@ -80,6 +80,7 @@ export class ArticleComponent implements OnInit {
      */
     public store(form: NgForm): void {
         this.saving = true;
+        this.setPublishedAt(this.article.published_at);
         this.overwrite(form.form.value);
 
         if (!this.article.id) {
