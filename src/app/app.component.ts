@@ -32,6 +32,36 @@ export class AppComponent extends DashboardComponent implements OnInit {
                 return this.roles.has('dashboard');
             },
         },
+        // {
+        //     routerLink: '/files',
+        //     label:      'File Manager',
+        //     icon:       'icon-docs',
+        // },
+        // {
+        //     routerLink: '/tiers',
+        //     label:      'Payment Tiers',
+        //     icon:       'icon-key',
+        // },
+        // {
+        //     routerLink: '/analytics',
+        //     label:      'Analytics',
+        //     icon:       'icon-graph',
+        // },
+        // {
+        //     routerLink: '/embeds',
+        //     label:      'Embed Scripts',
+        //     icon:       'icon-energy',
+        // },
+        // {
+        //     routerLink: '/settings',
+        //     label:      'Settings',
+        //     icon:       'icon-settings',
+        // },
+        // {
+        //     routerLink: '/contact',
+        //     label:      'Contact Us',
+        //     icon:       'icon-speech',
+        // },
     ];
 
     public ngOnInit(): void {
