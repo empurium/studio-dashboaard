@@ -42,7 +42,7 @@ export class ArticleComponent implements OnInit {
     public loadTiers(): void {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => this.alerts.error('Error', error),
+            (error: string) => this.alerts.error('Payment Tiers', 'There are no payment tiers available to assign to.'),
         );
     }
 
