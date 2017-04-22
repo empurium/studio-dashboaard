@@ -116,16 +116,16 @@
   dependencies:
     tsickle "^0.21.0"
 
-"@freescan/billing@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@freescan/billing/-/billing-1.4.2.tgz#3cf7afa6d64601e21df071cb462ab30863300b43"
+"@freescan/billing@^1.4.10":
+  version "1.4.10"
+  resolved "https://registry.yarnpkg.com/@freescan/billing/-/billing-1.4.10.tgz#eda17dfbc6ad1737f11759161b8e5b4e8cc4e7c5"
   dependencies:
     "@angular/common" "^4.0.1"
     "@angular/core" "^4.0.1"
     "@angular/http" "^4.0.1"
     "@angular/router" "^4.0.1"
     "@freescan/http" "^1.1.2"
-    "@freescan/skeleton" "^1.6.6"
+    "@freescan/skeleton" "^1.6.9"
     angular-oauth2-oidc "^1.0.20"
     moment "^2.18.1"
     ngx-bootstrap "1.6.6"
@@ -141,9 +141,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.6.6":
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.6.6.tgz#b7c8ea3ba57d91d5980d93eb6026697e9b0c8a59"
+"@freescan/skeleton@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.6.9.tgz#da3f6df12dddede90dff08f64c591fae36767b65"
   dependencies:
     "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"
@@ -353,8 +353,8 @@ arr-diff@^2.0.0:
     arr-flatten "^1.0.1"
 
 arr-flatten@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/arr-flatten/-/arr-flatten-1.0.1.tgz#e5ffe54d45e19f32f216e91eb99c8ce892bb604b"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/arr-flatten/-/arr-flatten-1.0.2.tgz#1ec1e63439c54f67d6f72bb4299c3d4f73b2d996"
 
 array-find-index@^1.0.1:
   version "1.0.2"
@@ -811,8 +811,8 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000653"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000653.tgz#123e112a29ce8f3199e4995d2d8b9d95492c5b41"
+  version "1.0.30000655"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000655.tgz#e40b6287adc938848d6708ef83d65b5f54ac1874"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -2151,8 +2151,8 @@ hoek@2.x.x:
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
 hosted-git-info@^2.1.4:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.4.1.tgz#4b0445e41c004a8bd1337773a4ff790ca40318c8"
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.4.2.tgz#0076b9f46a270506ddbaaea56496897460612a67"
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -3122,8 +3122,8 @@ negotiator@0.6.1:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
 ng-pick-datetime@^4.0.3:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-4.0.5.tgz#f9185ca3b055d745b0c64c90452a400e0704355f"
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-4.0.7.tgz#7f6965534ace9cac29bb72bd24815a2b5ba0fcea"
   dependencies:
     moment "^2.17.0"
 
@@ -3793,8 +3793,8 @@ postcss-zindex@^2.0.1:
     uniqs "^2.0.0"
 
 postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.0, postcss@^5.2.16:
-  version "5.2.16"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.16.tgz#732b3100000f9ff8379a48a53839ed097376ad57"
+  version "5.2.17"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.17.tgz#cf4f597b864d65c8a492b2eabe9d706c879c388b"
   dependencies:
     chalk "^1.1.3"
     js-base64 "^2.1.9"
@@ -4728,13 +4728,13 @@ tmp@0.0.24:
   version "0.0.24"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.24.tgz#d6a5e198d14a9835cc6f2d7c3d9e302428c8cf12"
 
-tmp@0.0.28:
+tmp@0.0.28, tmp@0.0.x:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.28.tgz#172735b7f614ea7af39664fa84cf0de4e515d120"
   dependencies:
     os-tmpdir "~1.0.1"
 
-tmp@0.0.30, tmp@0.0.x:
+tmp@0.0.30:
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.30.tgz#72419d4a8be7d6ce75148fd8b324e593a711c2ed"
   dependencies:
@@ -5238,16 +5238,9 @@ write-file-atomic@^1.1.2:
     imurmurhash "^0.1.4"
     slide "^1.1.5"
 
-ws@1.1.1:
+ws@1.1.1, ws@^1.0.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-1.1.1.tgz#082ddb6c641e85d4bb451f03d52f06eabdb1f018"
-  dependencies:
-    options ">=0.0.5"
-    ultron "1.0.x"
-
-ws@^1.0.1:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-1.1.4.tgz#57f40d036832e5f5055662a397c4de76ed66bf61"
   dependencies:
     options ">=0.0.5"
     ultron "1.0.x"
