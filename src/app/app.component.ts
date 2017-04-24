@@ -68,7 +68,9 @@ export class AppComponent extends DashboardComponent implements OnInit {
         this.attemptLogin();
 
         this.roles.all().subscribe(
-            (roles: string[]) => { },
+            (roles: string[]) => {
+                // Fetch roles for navigation
+            },
             (error: string) => console.error(error),
         );
     }
