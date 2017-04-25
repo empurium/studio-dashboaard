@@ -85,7 +85,10 @@ export class ArticleComponent implements OnInit {
      */
     public loadPeople(): void {
         this.peopleService.all().subscribe(
-            (people: PeopleResponse) => this.people = people.data,
+            (people: PeopleResponse) => {
+                this.people = people.data;
+                this.setPersonId();
+            },
             (error: string) => this.alerts.warning(
                 null, 'There are People available to assign to.',
             ),
@@ -167,10 +170,22 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
-     * Return the User ID of the currently logged in user.
+     * Automatically select the first author associated with this account
+     * if there isn't already one set on the article.
      */
     private setPersonId(): void {
-        this.article.person_id = this.authentication.userId();
+        const person: Person = _.find(this.people, { user_id: this.authentication.userId() });
+
+        if (!person) {
+            this.alerts.error(null, 'Please create an Author for your account before publishing.');
+            return;
+        }
+
+        if (this.article.person_id) {
+            return;
+        }
+
+        this.article.person_id = person.id;
     }
 
     /**
