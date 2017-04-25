@@ -65,32 +65,12 @@ export class PersonComponent implements OnInit {
 
         if (!this.person.id) {
             this.setUserId();
+            this.post();
 
-            this.peopleService
-                .post(this.person)
-                .finally(() => this.saving = false)
-                .subscribe(
-                    (response: PersonResponse) => {
-                        this.person = response.data;
-                        this.peopleService.forget();
-                        this.alerts.success(null, 'Person has been saved.');
-                        this.router.navigate([`../edit/${this.person.id}`], { relativeTo: this.route });
-                    },
-                    (error: any) => this.alerts.errorMessage(error),
-                );
             return;
         }
 
-        this.peopleService
-            .put(this.person)
-            .finally(() => this.saving = false)
-            .subscribe(
-                (response: PeopleResponse) => {
-                    this.peopleService.forget();
-                    this.alerts.success(null, 'Person has been saved.');
-                },
-                (error: any) => this.alerts.errorMessage(error),
-            );
+        this.put();
     }
 
     /**
@@ -105,5 +85,39 @@ export class PersonComponent implements OnInit {
      */
     private setEnabled(form: NgForm): void {
         this.person.enabled = form.value.enabled === 'true';
+    }
+
+    /**
+     * POST the person.
+     */
+    private post(): void {
+        this.peopleService
+            .post(this.person)
+            .finally(() => this.saving = false)
+            .subscribe(
+                (response: PersonResponse) => {
+                    this.person = response.data;
+                    this.peopleService.forget();
+                    this.alerts.success(null, 'Person has been saved.');
+                    this.router.navigate([`../edit/${this.person.id}`], { relativeTo: this.route });
+                },
+                (error: any) => this.alerts.errorMessage(error),
+            );
+    }
+
+    /**
+     * PUT the person.
+     */
+    private put(): void {
+        this.peopleService
+            .put(this.person)
+            .finally(() => this.saving = false)
+            .subscribe(
+                (response: PeopleResponse) => {
+                    this.peopleService.forget();
+                    this.alerts.success(null, 'Person has been saved.');
+                },
+                (error: any) => this.alerts.errorMessage(error),
+            );
     }
 }
