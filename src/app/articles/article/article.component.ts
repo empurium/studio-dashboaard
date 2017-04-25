@@ -15,6 +15,8 @@ import {
     ArticleResponse,
     TierService,
     Tier,
+    TierResourceService,
+    TierResource,
 } from '@freescan/skeleton';
 
 
@@ -42,6 +44,7 @@ export class ArticleComponent implements OnInit {
                 private alerts: AlertService,
                 private peopleService: PeopleService,
                 private tierService: TierService,
+                private tierResourceService: TierResourceService,
                 private articleService: ArticleService) {
     }
 
@@ -57,7 +60,9 @@ export class ArticleComponent implements OnInit {
     public loadTiers(): void {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => this.alerts.warning('Payment Tiers', 'There are no payment tiers available to assign to.'),
+            (error: string) => this.alerts.warning(
+                null, 'There are no payment tiers available to assign to.',
+            ),
         );
     }
 
@@ -65,9 +70,13 @@ export class ArticleComponent implements OnInit {
      * Request the tiers for this white label so they can assign articles to them.
      */
     public loadTierResources(): void {
-        this.tierService.all().subscribe(
-            (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => this.alerts.warning('Payment Tiers', 'There are no payment tiers available to assign to.'),
+        this.tierResourceService.for(this.article.id).subscribe(
+            (tiers: TierResource[]) => {
+                // nothing yet
+            },
+            (error: string) => this.alerts.warning(
+                null, 'There are no payment tiers available to assign to.',
+            ),
         );
     }
 
@@ -77,7 +86,9 @@ export class ArticleComponent implements OnInit {
     public loadPeople(): void {
         this.peopleService.all().subscribe(
             (people: PeopleResponse) => this.people = people.data,
-            (error: string) => this.alerts.warning('People', 'There are People available to assign to.'),
+            (error: string) => this.alerts.warning(
+                null, 'There are People available to assign to.',
+            ),
         );
     }
 
@@ -93,6 +104,7 @@ export class ArticleComponent implements OnInit {
             .subscribe((response: ArticleResponse) => {
                 this.loading = false;
                 this.article = response.data;
+                this.loadTierResources();
             });
     }
 
@@ -101,32 +113,31 @@ export class ArticleComponent implements OnInit {
      */
     public store(form: NgForm): void {
         this.saving = true;
-        this.setPublishedAt(this.article.published_at);
         this.overwrite(form.form.value);
+        this.setPublishedAt(this.article.published_at);
 
         if (!this.article.id) {
             this.setPersonId();
+            this.post();
 
-            this.articleService
-                .post(this.article)
-                .finally(() => this.saving = false)
-                .subscribe(
-                    (response: ArticleResponse) => {
-                        this.article = response.data;
-                        this.alerts.success(null, 'Article has been saved.');
-                        this.router.navigate([`../edit/${this.article.id}`], { relativeTo: this.route });
-                    },
-                    (error: any) => this.alerts.errorMessage(error),
-                );
             return;
         }
 
-        this.articleService
-            .put(this.article)
+        this.put();
+    }
+
+    /**
+     * Store the Tier Resource if it was specified.
+     */
+    public storeTierResource(): void {
+        this.tierResourceService
+            .post(this.tier, this.article.id)
             .finally(() => this.saving = false)
             .subscribe(
-                (response: ArticleResponse) => {
+                (response: TierResource) => {
+                    // this.tier = response;
                     this.alerts.success(null, 'Article has been saved.');
+                    this.router.navigate([`../edit/${this.article.id}`], { relativeTo: this.route });
                 },
                 (error: any) => this.alerts.errorMessage(error),
             );
@@ -141,6 +152,7 @@ export class ArticleComponent implements OnInit {
 
     /**
      * Convert the published_at date the user entered to UTC for the API.
+     * Template uses this.
      */
     public setPublishedAt(datetime: string): void {
         this.article.published_at = moment(datetime).utc().format('YYYY-MM-DD\THH:mm:ssZZ');
@@ -151,6 +163,38 @@ export class ArticleComponent implements OnInit {
      */
     private setPersonId(): void {
         this.article.person_id = this.authentication.userId();
+    }
+
+    /**
+     * POST the article.
+     */
+    private post(): void {
+        this.articleService
+            .post(this.article)
+            .finally(() => this.saving = false)
+            .subscribe(
+                (response: ArticleResponse) => {
+                    this.article = response.data;
+                    this.alerts.success(null, 'Article has been saved.');
+                    this.router.navigate([`../edit/${this.article.id}`], { relativeTo: this.route });
+                },
+                (error: any) => this.alerts.errorMessage(error),
+            );
+    }
+
+    /**
+     * PUT the article.
+     */
+    private put(): void {
+        this.articleService
+            .put(this.article)
+            .finally(() => this.saving = false)
+            .subscribe(
+                (response: ArticleResponse) => {
+                    this.alerts.success(null, 'Article has been saved.');
+                },
+                (error: any) => this.alerts.errorMessage(error),
+            );
     }
 
     /**
