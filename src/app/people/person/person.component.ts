@@ -53,7 +53,7 @@ export class PersonComponent implements OnInit {
      * Cancel the edit and navigate back.
      */
     public cancel(): void {
-        this.router.navigate(['people']);
+        this.router.navigate(['authors']);
     }
 
     /**
@@ -72,6 +72,7 @@ export class PersonComponent implements OnInit {
                 .subscribe(
                     (response: PersonResponse) => {
                         this.person = response.data;
+                        this.peopleService.forget();
                         this.alerts.success(null, 'Person has been saved.');
                         this.router.navigate([`../edit/${this.person.id}`], { relativeTo: this.route });
                     },
@@ -85,6 +86,7 @@ export class PersonComponent implements OnInit {
             .finally(() => this.saving = false)
             .subscribe(
                 (response: PeopleResponse) => {
+                    this.peopleService.forget();
                     this.alerts.success(null, 'Person has been saved.');
                 },
                 (error: any) => this.alerts.errorMessage(error),
@@ -94,14 +96,14 @@ export class PersonComponent implements OnInit {
     /**
      * Sets the User ID of the new Person to the currently logged in user.
      */
-    public setUserId(): void {
+    private setUserId(): void {
         this.person.user_id = this.authentication.userId();
     }
 
     /**
      * Convert strings true/false to their boolean counterpart.
      */
-    public setEnabled(form: NgForm): void {
+    private setEnabled(form: NgForm): void {
         this.person.enabled = form.value.enabled === 'true';
     }
 }
