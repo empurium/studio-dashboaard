@@ -23,7 +23,11 @@
             </thead>
             <tbody>
             <tr *ngFor="let person of people">
-                <td><img [src]="person.avatar_url" class="thumbnail" /></td>
+                <td>
+                    <a routerLink="edit/{{ person.id }}">
+                        <img [src]="person.avatar_url" class="thumbnail" />
+                    </a>
+                </td>
                 <td><strong>{{ person.first_name }} {{ person.last_name }}</strong></td>
                 <td>{{ person.display_name }}</td>
                 <td class="text-right">
