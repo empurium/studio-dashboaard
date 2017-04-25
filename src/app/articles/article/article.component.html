@@ -30,9 +30,8 @@
 
                 <div class="col-sm-12 col-md-3">
                     <label for="person_id">Author</label>
-                    <select [(ngModel)]="person_id" name="person_id" id="person_id" class="form-control">
-                        <option *ngFor="let person of people"
-                                [value]="person.id">
+                    <select [(ngModel)]="article.person_id" name="person_id" id="person_id" class="form-control">
+                        <option *ngFor="let person of people" [value]="person.id">
                             {{ person.first_name }} {{ person.last_name }}
                         </option>
                     </select>

@@ -57,7 +57,7 @@ export class ArticleComponent implements OnInit {
     public loadTiers(): void {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => this.alerts.error('Payment Tiers', 'There are no payment tiers available to assign to.'),
+            (error: string) => this.alerts.warning('Payment Tiers', 'There are no payment tiers available to assign to.'),
         );
     }
 
@@ -67,7 +67,7 @@ export class ArticleComponent implements OnInit {
     public loadTierResources(): void {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
-            (error: string) => this.alerts.error('Payment Tiers', 'There are no payment tiers available to assign to.'),
+            (error: string) => this.alerts.warning('Payment Tiers', 'There are no payment tiers available to assign to.'),
         );
     }
 
@@ -77,7 +77,7 @@ export class ArticleComponent implements OnInit {
     public loadPeople(): void {
         this.peopleService.all().subscribe(
             (people: PeopleResponse) => this.people = people.data,
-            (error: string) => this.alerts.error('People', 'There are People available to assign to.'),
+            (error: string) => this.alerts.warning('People', 'There are People available to assign to.'),
         );
     }
 
