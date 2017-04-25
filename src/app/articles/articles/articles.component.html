@@ -19,10 +19,13 @@
 
                 <div class="text-muted mb-1">
                     {{ article.published_at | date:'medium' }} - {{ published(article) }}
+                    <br />
+                    <span *ngIf="article.person">
+                        by {{ article.person.data.display_name }}
+                    </span>
                 </div>
 
                 <p>{{ article.preview }}</p>
-                <p [innerHTML]="article.content"></p>
             </div>
         </div>
     </div>
