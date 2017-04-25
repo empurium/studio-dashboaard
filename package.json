@@ -26,7 +26,7 @@
     "@angular/router": "^4.0.1",
     "@freescan/billing": "^1.4.10",
     "@freescan/http": "^1.1.1",
-    "@freescan/skeleton": "^1.6.10",
+    "@freescan/skeleton": "^1.7.1",
     "angular2-froala-wysiwyg": "^2.5.1-2",
     "animate.css": "^3.5.2",
     "core-js": "^2.4.1",

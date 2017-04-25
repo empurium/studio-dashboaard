@@ -10,8 +10,12 @@ export const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path:      'publications',
+        path:         'publications',
         loadChildren: './articles/articles.module#ArticlesModule',
+    },
+    {
+        path:         'people',
+        loadChildren: './people/people.module#PeopleModule',
     },
 
     // 404
