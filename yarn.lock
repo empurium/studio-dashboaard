@@ -141,29 +141,7 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.6.9":
-  version "1.6.9"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.6.9.tgz#da3f6df12dddede90dff08f64c591fae36767b65"
-  dependencies:
-    "@angular/animations" "^4.0.1"
-    "@angular/common" "^4.0.1"
-    "@angular/core" "^4.0.1"
-    "@angular/forms" "^4.0.1"
-    "@angular/http" "^4.0.1"
-    "@angular/platform-browser" "^4.0.1"
-    "@angular/router" "^4.0.1"
-    "@freescan/http" "^1.1.1"
-    angular-oauth2-oidc "^1.0.20"
-    angular2-jwt "^0.2.0"
-    animate.css "^3.5.2"
-    bootstrap "4.0.0-alpha.6"
-    moment "^2.18.1"
-    ng-pick-datetime "^4.0.3"
-    ng2-toastr "^4.0.1"
-    ngx-bootstrap "1.6.6"
-    zone.js "^0.8.5"
-
-"@freescan/skeleton@^1.7.1":
+"@freescan/skeleton@^1.6.9", "@freescan/skeleton@^1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.7.1.tgz#a132a381d405902cfae1c22742b2b6cc6c20a8be"
   dependencies:
@@ -303,6 +281,12 @@ angular2-froala-wysiwyg@^2.5.1-2:
 angular2-jwt@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/angular2-jwt/-/angular2-jwt-0.2.2.tgz#c7ba295daffb837c698fbe83ecfe0ecfa29b3f4f"
+
+angular2-moment@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/angular2-moment/-/angular2-moment-1.3.3.tgz#569c433bbfa2448d5424f0e10dce6f8c8c9533eb"
+  dependencies:
+    moment "^2.16.0"
 
 animate.css@^3.5.2:
   version "3.5.2"
@@ -3113,7 +3097,7 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-moment@2.18.1, moment@^2.17.0, moment@^2.18.1:
+moment@2.18.1, moment@^2.16.0, moment@^2.17.0, moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 

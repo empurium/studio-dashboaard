@@ -104,6 +104,7 @@ export class ArticleComponent implements OnInit {
             .subscribe((response: ArticleResponse) => {
                 this.loading = false;
                 this.article = response.data;
+                this.setMomentPublished();
                 this.loadTierResources();
             });
     }
@@ -155,7 +156,14 @@ export class ArticleComponent implements OnInit {
      * Template uses this.
      */
     public setPublishedAt(datetime: string): void {
-        this.article.published_at = moment(datetime).utc().format('YYYY-MM-DD\THH:mm:ssZZ');
+        this.article.published_at = moment(datetime).format('YYYY-MM-DD\THH:mm:ssZZ');
+    }
+
+    /**
+     * Create a moment object based on the published_at date.
+     */
+    private setMomentPublished(): void {
+        this.momentPublished = moment(this.article.published_at);
     }
 
     /**

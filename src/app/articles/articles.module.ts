@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { MomentModule } from 'angular2-moment';
 import { StudioModule } from '@freescan/skeleton';
 
 // Core
@@ -18,6 +19,7 @@ import { ArticleComponent } from './article/article.component';
         FormsModule,
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot(),
+        MomentModule,
 
         StudioModule,
         ArticlesRoutingModule,
