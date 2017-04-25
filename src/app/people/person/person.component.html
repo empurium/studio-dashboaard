@@ -1,6 +1,6 @@
 <form (ngSubmit)="store(form)" #form="ngForm">
     <div class="card animated fadeIn" *ngIf="!loading">
-        <div class="card-header text-center" *ngIf="person.avatar_url">
+        <div class="card-header text-center animated fadeIn" *ngIf="person.avatar_url">
             <img src="{{ person.avatar_url }}" class="thumbnail" />
         </div>
 
