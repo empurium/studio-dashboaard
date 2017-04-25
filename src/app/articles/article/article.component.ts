@@ -4,7 +4,18 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { AlertService, ArticleService, Article, ArticleResponse, TierService, Tier } from '@freescan/skeleton';
+import {
+    AuthenticationService,
+    AlertService,
+    PeopleService,
+    Person,
+    PeopleResponse,
+    ArticleService,
+    Article,
+    ArticleResponse,
+    TierService,
+    Tier,
+} from '@freescan/skeleton';
 
 
 @Component({
@@ -17,6 +28,7 @@ export class ArticleComponent implements OnInit {
     public article: Article     = new Article();
     public tiers: Tier[];
     public tier: Tier;
+    public people: Person[];
     public loading: boolean     = true;
     public saving: boolean      = false;
     public momentPublished: any = moment();
@@ -26,7 +38,9 @@ export class ArticleComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private authentication: AuthenticationService,
                 private alerts: AlertService,
+                private peopleService: PeopleService,
                 private tierService: TierService,
                 private articleService: ArticleService) {
     }
@@ -34,6 +48,7 @@ export class ArticleComponent implements OnInit {
     public ngOnInit(): void {
         this.loadArticle();
         this.loadTiers();
+        this.loadPeople();
     }
 
     /**
@@ -43,6 +58,26 @@ export class ArticleComponent implements OnInit {
         this.tierService.all().subscribe(
             (tiers: Tier[]) => this.tiers = tiers,
             (error: string) => this.alerts.error('Payment Tiers', 'There are no payment tiers available to assign to.'),
+        );
+    }
+
+    /**
+     * Request the tiers for this white label so they can assign articles to them.
+     */
+    public loadTierResources(): void {
+        this.tierService.all().subscribe(
+            (tiers: Tier[]) => this.tiers = tiers,
+            (error: string) => this.alerts.error('Payment Tiers', 'There are no payment tiers available to assign to.'),
+        );
+    }
+
+    /**
+     * Request the people for this white label so they can assign articles to them.
+     */
+    public loadPeople(): void {
+        this.peopleService.all().subscribe(
+            (people: PeopleResponse) => this.people = people.data,
+            (error: string) => this.alerts.error('People', 'There are People available to assign to.'),
         );
     }
 
@@ -62,20 +97,6 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
-     * Cancel the edit and navigate back.
-     */
-    public cancel(): void {
-        this.router.navigate(['publications']);
-    }
-
-    /**
-     * Convert the published_at date the user entered to UTC for the API.
-     */
-    public setPublishedAt(datetime: string): void {
-        this.article.published_at = moment(datetime).utc().format('YYYY-MM-DD\THH:mm:ssZZ');
-    }
-
-    /**
      * Either POST a new article or PUT the new contents.
      */
     public store(form: NgForm): void {
@@ -84,6 +105,8 @@ export class ArticleComponent implements OnInit {
         this.overwrite(form.form.value);
 
         if (!this.article.id) {
+            this.setPersonId();
+
             this.articleService
                 .post(this.article)
                 .finally(() => this.saving = false)
@@ -107,6 +130,27 @@ export class ArticleComponent implements OnInit {
                 },
                 (error: any) => this.alerts.errorMessage(error),
             );
+    }
+
+    /**
+     * Cancel the edit and navigate back.
+     */
+    public cancel(): void {
+        this.router.navigate(['publications']);
+    }
+
+    /**
+     * Convert the published_at date the user entered to UTC for the API.
+     */
+    public setPublishedAt(datetime: string): void {
+        this.article.published_at = moment(datetime).utc().format('YYYY-MM-DD\THH:mm:ssZZ');
+    }
+
+    /**
+     * Return the User ID of the currently logged in user.
+     */
+    private setPersonId(): void {
+        this.article.person_id = this.authentication.userId();
     }
 
     /**

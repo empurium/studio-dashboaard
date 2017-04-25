@@ -14,7 +14,7 @@ export const routes: Routes = [
         loadChildren: './articles/articles.module#ArticlesModule',
     },
     {
-        path:         'people',
+        path:         'authors',
         loadChildren: './people/people.module#PeopleModule',
     },
 

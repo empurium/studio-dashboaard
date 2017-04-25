@@ -24,8 +24,29 @@
                     <label for="tier">Payment Tier</label>
                     <select [(ngModel)]="tier" name="tier" id="tier" class="form-control">
                         <option value="">Free</option>
-                        <option *ngFor="let tier of tiers">{{ tier.name }}</option>
+                        <option *ngFor="let tier of tiers" [value]="tier.id">{{ tier.name }}</option>
                     </select>
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <label for="person_id">Author</label>
+                    <select [(ngModel)]="person_id" name="person_id" id="person_id" class="form-control">
+                        <option *ngFor="let person of people"
+                                [value]="person.id">
+                            {{ person.first_name }} {{ person.last_name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-12 col-md-9">
+                    <label for="preview">Preview
+                        <span class="text-muted">
+                            - free content
+                        </span>
+                    </label>
+                    <input [(ngModel)]="article.preview" name="preview" id="preview" type="text" placeholder="Preview" class="form-control" />
                 </div>
 
                 <div class="col-sm-12 col-md-3">
@@ -42,17 +63,6 @@
                            class="form-control cursor-pointer"
                            readonly
                            required />
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col-sm-12">
-                    <label for="preview">Preview
-                        <span class="text-muted">
-                            - free content
-                        </span>
-                    </label>
-                    <input [(ngModel)]="article.preview" name="preview" id="preview" type="text" placeholder="Preview" class="form-control" />
                 </div>
             </div>
 

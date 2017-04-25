@@ -33,8 +33,8 @@ export class AppComponent extends DashboardComponent implements OnInit {
             },
         },
         {
-            routerLink: '/people',
-            label:      'People',
+            routerLink: '/authors',
+            label:      'Authors',
             icon:       'icon-people',
             show:       (): boolean => {
                 return this.roles.has('dashboard');
