@@ -97,7 +97,7 @@ export class PersonComponent implements OnInit {
             .subscribe(
                 (response: PersonResponse) => {
                     this.person = response.data;
-                    this.alerts.success(null, 'Person has been saved.');
+                    this.alerts.success(null, 'Author has been saved.');
                     this.router.navigate([`../edit/${this.person.id}`], { relativeTo: this.route });
                 },
                 (error: any) => this.alerts.errorMessage(error),
@@ -113,7 +113,7 @@ export class PersonComponent implements OnInit {
             .finally(() => this.saving = false)
             .subscribe(
                 (response: PeopleResponse) => {
-                    this.alerts.success(null, 'Person has been saved.');
+                    this.alerts.success(null, 'Author has been saved.');
                 },
                 (error: any) => this.alerts.errorMessage(error),
             );
