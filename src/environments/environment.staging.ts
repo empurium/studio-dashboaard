@@ -12,15 +12,15 @@ const env: Environment = {
 
     // API URL's
     api: {
-        passport:     'http://staging-passport.publication.studio',
-        vinyl:        'http://staging-vinyl.publication.studio',
-        cashier:      'http://staging-cashier.publication.studio',
-        files:        'http://staging-files.publication.studio',
-        publications: 'http://staging-publication.publication.studio',
+        passport:     'https://staging-passport.publication.studio',
+        vinyl:        'https://staging-vinyl.publication.studio',
+        cashier:      'https://staging-cashier.publication.studio',
+        files:        'https://staging-files.publication.studio',
+        publications: 'https://staging-publication.publication.studio',
     },
 
     passport: {
-        login:       'http://staging-passport.publication.studio/authorize',
+        login:       'https://staging-passport.publication.studio/authorize',
         clientId:    '4',
         redirectURI: 'http://staging.publication.studio',
         scope:       '',
