@@ -21,8 +21,8 @@
                 </div>
 
                 <div class="col-sm-12 col-md-3">
-                    <label for="tier">Payment Tier</label>
-                    <select [(ngModel)]="tier" name="tier" id="tier" class="form-control">
+                    <label for="tierId">Payment Tier</label>
+                    <select [(ngModel)]="tierId" name="tierId" id="tierId" class="form-control">
                         <option value="">Free</option>
                         <option *ngFor="let tier of tiers" [value]="tier.id">{{ tier.name }}</option>
                     </select>
@@ -69,7 +69,7 @@
                 <div class="col-sm-12 col-md-9">
                     <label for="content">Content
                         <span class="text-muted">
-                            - visible to <strong>{{ tier ? tier.name : 'paid' }}</strong> users
+                            - visible to <strong>{{ getTierName() }}</strong> users
                         </span>
                     </label>
                     <div [froalaEditor]="froala" [(froalaModel)]="article.content" id="content"></div>
