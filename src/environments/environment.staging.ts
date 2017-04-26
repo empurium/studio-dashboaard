@@ -28,10 +28,10 @@ const env: Environment = {
 };
 
 // Set the API URL's based on the domain
-env.api.vinyl            = `http://staging-vinyl.${domain}`;
-env.api.cashier          = `http://staging-cashier.${domain}`;
-env.api.files            = `http://staging-files.${domain}`;
-env.api.publications     = `http://staging-publication.${domain}`;
+env.api.vinyl            = `https://staging-vinyl.${domain}`;
+env.api.cashier          = `https://staging-cashier.${domain}`;
+env.api.files            = `https://staging-files.${domain}`;
+env.api.publications     = `https://staging-publication.${domain}`;
 env.passport.clientId    = passport.clientId;
 env.passport.redirectURI = passport.redirectURI;
 
