@@ -28,6 +28,7 @@ const env: Environment = {
 };
 
 // Set the API URL's based on the domain
+env.api.passport         = `http://passport.${domain}`;
 env.api.vinyl            = `http://vinyl.${domain}`;
 env.api.cashier          = `http://cashier.${domain}`;
 env.api.files            = `http://files.${domain}`;

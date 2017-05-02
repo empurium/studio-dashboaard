@@ -12,26 +12,27 @@ const env: Environment = {
 
     // API URL's
     api: {
-        passport:     'http://passport.publication.studio',
-        vinyl:        'http://vinyl.publication.studio',
-        cashier:      'http://cashier.publication.studio',
-        files:        'http://files.publication.studio',
-        publications: 'http://api.publication.studio',
+        passport:     'https://passport.publication.studio',
+        vinyl:        'https://vinyl.publication.studio',
+        cashier:      'https://cashier.publication.studio',
+        files:        'https://files.publication.studio',
+        publications: 'https://api.publication.studio',
     },
 
     passport: {
-        login:       'http://passport.publication.studio/authorize',
+        login:       'https://passport.publication.studio/authorize',
         clientId:    '4',
-        redirectURI: 'http://www.publication.studio',
+        redirectURI: 'https://www.publication.studio',
         scope:       '',
     },
 };
 
 // Set the API URL's based on the domain
-env.api.vinyl        = `http://vinyl.${domain}`;
-env.api.cashier      = `http://cashier.${domain}`;
-env.api.files        = `http://files.${domain}`;
-env.api.publications = `http://publication.${domain}`;
+env.api.passport         = `https://passport.${domain}`;
+env.api.vinyl            = `https://vinyl.${domain}`;
+env.api.cashier          = `https://cashier.${domain}`;
+env.api.files            = `https://files.${domain}`;
+env.api.publications     = `https://publication.${domain}`;
 env.passport.clientId    = passport.clientId;
 env.passport.redirectURI = passport.redirectURI;
 
