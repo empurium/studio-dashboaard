@@ -65,7 +65,7 @@ $vimeo: #aad450;
 
 // Navbar
 
-$navbar-height:                     60px;
+$navbar-height:                     80px;
 $navbar-bg:                         #59b0da;
 $navbar-border: (
     bottom: (
@@ -195,3 +195,9 @@ $footer-borders: (
 
 $card-icon-bg:                      transparent;
 $card-icon-color:                   $body-color;
+
+// Links
+
+$href-link-color:                   $brand-primary;
+$href-link-hover-color:             $brand-success;
+
