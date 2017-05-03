@@ -15,16 +15,6 @@ export class AppComponent extends DashboardComponent implements OnInit {
             exactActive: true,
         },
         {
-            label: 'Login',
-            icon:  'icon-login',
-            show:  (): boolean => {
-                return !this.authenticated();
-            },
-            click: (): void => {
-                this.login();
-            },
-        },
-        {
             routerLink: '/publications',
             label:      'Publications',
             icon:       'icon-notebook',
