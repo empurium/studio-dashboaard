@@ -7,7 +7,7 @@
     "start": "ng serve --port 5001",
     "build": "ng build",
     "build:staging": "ng build -e staging",
-    "build:prod": "ng build -e prod -t production -aot",
+    "build:prod": "ng build -e prod",
     "build:circle": "npm run build:prod -- --progress=false",
     "test": "ng test",
     "test:circle": "npm run test -- --progress=false --watch=false",
