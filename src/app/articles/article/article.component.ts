@@ -37,7 +37,7 @@ export class ArticleComponent implements OnInit {
     public saving: boolean      = false;
     public momentPublished: any = moment();
     public froala: any          = {
-        toolbarStickyOffset: 60,
+        toolbarStickyOffset: 80,
     };
 
     constructor(private route: ActivatedRoute,
