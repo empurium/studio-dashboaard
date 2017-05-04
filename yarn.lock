@@ -163,9 +163,9 @@
     ngx-bootstrap "1.6.6"
     zone.js "^0.8.5"
 
-"@freescan/skeleton@^1.7.20":
-  version "1.7.20"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.7.20.tgz#b78d0c057eefac8b9ba88d3169a3ee34bbdf72fc"
+"@freescan/skeleton@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.8.0.tgz#c3883caa47b8b088047559163e115bf4fadb07fb"
   dependencies:
     "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"
