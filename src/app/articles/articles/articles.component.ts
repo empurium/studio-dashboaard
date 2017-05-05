@@ -9,17 +9,21 @@ import { AlertService, ArticleService, Article, ArticlesResponse } from '@freesc
     styleUrls:   ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
-    public _articles: Article[];
+    public articles: Article[];
+    public page: number  = 1;
+    public limit: number = 20;
 
     constructor(private alerts: AlertService,
-                private articles: ArticleService) {
+                private articlesService: ArticleService) {
     }
 
     public ngOnInit(): void {
-        this.articles.all().subscribe(
-            (response: ArticlesResponse) => this._articles = response.data,
-            (error: any) => this.alerts.errorMessage(error),
-        );
+        this.articlesService
+            .all(this.page, this.limit)
+            .subscribe(
+                (response: ArticlesResponse) => this.articles = response.data,
+                (error: any) => this.alerts.errorMessage(error),
+            );
     }
 
     /**
