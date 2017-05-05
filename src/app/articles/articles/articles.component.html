@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="!loading">
     <div class="col-sm-12 text-center">
         <pagination-controls (pageChange)="load($event)"></pagination-controls>
     </div>
