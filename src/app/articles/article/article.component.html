@@ -99,3 +99,38 @@
         </div>
     </div>
 </form>
+
+<div *ngIf="article.id" class="file-upload-container mt-2 mb-3">
+    <div ngFileDrop class="drop-container" [class.is-drop-over]="dragOver"
+         (uploadOutput)="onUploadOutput($event)"
+         [uploadInput]="uploadInput">
+        <div class="row">
+            <div class="drop-files col-sm-4">
+                <ul>
+                    <li *ngFor="let file of files">
+                        <strong>{{ file.name }}</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4 text-center">
+                <label class="upload-button btn btn-lg btn-secondary btn-pointer">
+                  Choose File(s)
+                  <input type="file"
+                         ngFileSelect
+                         (uploadOutput)="onUploadOutput($event)"
+                         [uploadInput]="uploadInput"
+                         multiple>
+                </label>
+
+                <h2 class="mt-1">or Drag &amp; Drop Here</h2>
+            </div>
+
+            <div class="col-sm-4 text-right">
+                <button (click)="startUpload()" class="btn btn-lg btn-primary btn-pointer start-upload-btn">
+                    Upload
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
