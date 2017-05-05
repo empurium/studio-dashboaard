@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import { AlertService, ArticleService, Article, ArticlesResponse } from '@freescan/skeleton';
 
@@ -37,7 +38,7 @@ export class ArticlesComponent implements OnInit {
             .do(
                 (response: ArticlesResponse) => {
                     this.loading = false;
-                    this.total   = response.meta.pagination.total;
+                    this.total   = +_.get(response, 'meta.pagination.total');
                 },
                 (error: any) => this.alerts.errorMessage(error),
             )
