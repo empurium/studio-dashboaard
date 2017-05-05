@@ -23,7 +23,7 @@ import { ArticleComponent } from './article/article.component';
         MomentModule,
         NgxPaginationModule,
 
-        StudioModule.forRoot(),
+        StudioModule,
         ArticlesRoutingModule,
     ],
 
