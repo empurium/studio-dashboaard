@@ -1,61 +1,58 @@
 <form (ngSubmit)="store(form)" #form="ngForm">
     <div class="card animated fadeIn" *ngIf="!loading">
-        <div class="card-header text-center animated fadeIn" *ngIf="person.avatar_url">
-            <img src="{{ person.avatar_url }}" class="thumbnail" />
-        </div>
-
         <div class="card-block">
-            <div class="row form-group mb-2">
-                <div class="col-sm-12 col-md-4">
-                    <input [(ngModel)]="person.first_name" name="first_name" id="first_name" type="text" placeholder="First Name" class="form-control input-lg" required minlength="2" />
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <input [(ngModel)]="person.last_name" name="last_name" id="last_name" type="text" placeholder="Last Name" class="form-control input-lg" required minlength="2" />
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <input [(ngModel)]="person.display_name" name="display_name" id="display_name" type="text" placeholder="Display Name" class="form-control input-lg" required minlength="2" />
-                </div>
-            </div>
+            <div class="row">
+                <div [class.col-sm-9]="person.avatar_url" [class.col-sm-12]="!person.avatar_url">
+                    <div class="row form-group mb-2">
+                        <div class="col-sm-12 col-md-4">
+                            <input [(ngModel)]="person.first_name" name="first_name" id="first_name" type="text" placeholder="First Name" class="form-control input-lg" required minlength="2" />
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <input [(ngModel)]="person.last_name" name="last_name" id="last_name" type="text" placeholder="Last Name" class="form-control input-lg" required minlength="2" />
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <input [(ngModel)]="person.display_name" name="display_name" id="display_name" type="text" placeholder="Display Name" class="form-control input-lg" required minlength="2" />
+                        </div>
+                    </div>
 
-            <div class="row form-group">
-                <div class="col-sm-12 col-md-4">
-                    <label for="email">Email Address</label>
-                    <input [(ngModel)]="person.email" name="email" id="email" type="text" placeholder="Email Address" class="form-control" required minlength="2" />
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <label for="gender">Gender</label>
-                    <select [(ngModel)]="person.gender" name="gender" id="gender" class="form-control">
-                        <option value="m" [selected]="person.gender === 'm'">Male</option>
-                        <option value="f" [selected]="person.gender === 'f'">Female</option>
-                    </select>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <label for="enabled">Enabled</label>
-                    <select [(ngModel)]="person.enabled" name="enabled" id="enabled" class="form-control">
-                        <option value="true" [selected]="person.enabled">Yes</option>
-                        <option value="false" [selected]="!person.enabled">No</option>
-                    </select>
-                </div>
-            </div>
+                    <div class="row form-group">
+                        <div class="col-sm-12 col-md-6">
+                            <label for="email">Email Address</label>
+                            <input [(ngModel)]="person.email" name="email" id="email" type="text" placeholder="Email Address" class="form-control" required minlength="2" />
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="gender">Gender</label>
+                            <select [(ngModel)]="person.gender" name="gender" id="gender" class="form-control">
+                                <option value="m" [selected]="person.gender === 'm'">Male</option>
+                                <option value="f" [selected]="person.gender === 'f'">Female</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <div class="row form-group">
-                <div class="col-sm-12">
-                    <label for="avatar_url">Avatar image URL</label>
-                    <div class="input-group">
-                        <input [(ngModel)]="person.avatar_url" name="avatar_url" id="avatar_url" type="text" placeholder="Image URL" class="form-control" required />
-                        <span class="input-group-btn">
-                          <a href="{{ person.avatar_url }}" class="btn btn-primary btn-pointer" target="_blank">
-                              <i class="fa fa-external-link" aria-hidden="true"></i>
-                          </a>
-                        </span>
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <label for="avatar_url">Avatar image URL</label>
+                            <div class="input-group">
+                                <input [(ngModel)]="person.avatar_url" name="avatar_url" id="avatar_url" type="text" placeholder="Image URL" class="form-control" />
+                                <span class="input-group-btn">
+                                  <a href="{{ person.avatar_url }}" class="btn btn-primary btn-pointer" target="_blank">
+                                      <i class="fa fa-external-link" aria-hidden="true"></i>
+                                  </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <label for="biography">Biography</label>
+                            <textarea [(ngModel)]="person.biography" name="biography" id="biography" placeholder="Biography" class="form-control" rows="5"></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row form-group">
-                <div class="col-sm-12">
-                    <label for="biography">Biography</label>
-                    <textarea [(ngModel)]="person.biography" name="biography" id="biography" placeholder="Biography" class="form-control" rows="5"></textarea>
+                <div *ngIf="person.avatar_url" class="col-sm-3 text-center">
+                    <img src="{{ person.avatar_url }}" class="thumbnail" />
                 </div>
             </div>
         </div>

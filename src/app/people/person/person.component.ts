@@ -61,7 +61,7 @@ export class PersonComponent implements OnInit {
      */
     public store(form: NgForm): void {
         this.saving = true;
-        this.setEnabled(form);
+        this.setEnabled();
 
         if (!this.person.id) {
             this.setUserId();
@@ -81,10 +81,10 @@ export class PersonComponent implements OnInit {
     }
 
     /**
-     * Convert strings true/false to their boolean counterpart.
+     * Always enabling people right now.
      */
-    private setEnabled(form: NgForm): void {
-        this.person.enabled = form.value.enabled === 'true';
+    private setEnabled(): void {
+        this.person.enabled = true;
     }
 
     /**
