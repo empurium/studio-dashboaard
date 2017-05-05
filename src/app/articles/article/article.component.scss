@@ -9,15 +9,6 @@
  * TODO - We will pay for Froala! It is a great editor
  * and we prefer to pay for good software. Just need funds first.
  */
-.fr-wrapper + div > a {
-  z-index: -1 !important;
-  background-color: #fff !important;
-  display: none !important;
-}
-.fr-wrapper + div {
-  z-index: -1 !important;
-  display: none !important;
-}
 .fr-toolbar {
   border-top: none;
   border-radius: 0;
