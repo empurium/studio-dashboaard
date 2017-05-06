@@ -5,7 +5,8 @@
         <div class="card-block">
             <div class="row form-group">
                 <div class="col-sm-12">
-                    <input [(ngModel)]="article.title" name="title" id="title" type="text" placeholder="Title" class="form-control input-lg" required minlength="8" />
+                    <input [(ngModel)]="article.title" name="title" id="title" type="text" placeholder="Title"
+                           class="form-control input-lg" required minlength="8"/>
                 </div>
             </div>
 
@@ -13,7 +14,8 @@
                 <div class="col-sm-12 col-md-6">
                     <label for="image_url">Thumbnail image URL</label>
                     <div class="input-group">
-                        <input [(ngModel)]="article.image_url" name="image_url" id="image_url" type="text" placeholder="Image URL" class="form-control" required />
+                        <input [(ngModel)]="article.image_url" name="image_url" id="image_url" type="text"
+                               placeholder="Image URL" class="form-control" required/>
                         <span class="input-group-btn">
                           <a href="{{ article.image_url }}" class="btn btn-primary btn-pointer" target="_blank">
                               <i class="fa fa-external-link" aria-hidden="true"></i>
@@ -47,7 +49,8 @@
                             - free content
                         </span>
                     </label>
-                    <textarea [(ngModel)]="article.preview" rows="4" name="preview" id="preview" placeholder="Preview" class="form-control"></textarea>
+                    <textarea [(ngModel)]="article.preview" rows="4" name="preview" id="preview" placeholder="Preview"
+                              class="form-control"></textarea>
                 </div>
 
                 <div class="col-sm-12 col-md-3">
@@ -63,7 +66,7 @@
                            type="datetime"
                            class="form-control cursor-pointer"
                            readonly
-                           required />
+                           required/>
                 </div>
             </div>
 
@@ -74,11 +77,16 @@
                             - visible to <strong>{{ getTierName() }}</strong> users
                         </span>
                     </label>
-                    <div [froalaEditor]="froala" [(froalaModel)]="article.content" id="content"></div>
+                    <div id="content"></div>
+                    <ckeditor
+                            name="ckeditorContent"
+                            [(ngModel)]="ckeditorContent"
+                            debounce="500">
+                    </ckeditor>
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <label for="thumbnail">Thumbnail</label>
-                    <img *ngIf="article.image_url" src="{{ article.image_url }}" class="thumbnail" id="thumbnail" />
+                    <img *ngIf="article.image_url" src="{{ article.image_url }}" class="thumbnail" id="thumbnail"/>
                     <div *ngIf="!article.image_url" class="text-danger">None</div>
                 </div>
             </div>
@@ -93,7 +101,8 @@
                 </div>
 
                 <div class="col-sm-6 text-right">
-                    <button type="submit" [disabled]="!form.form.valid || saving" class="btn btn-primary btn-pointer btn-lg">
+                    <button type="submit" [disabled]="!form.form.valid || saving"
+                            class="btn btn-primary btn-pointer btn-lg">
                         Save
                     </button>
                 </div>

@@ -181,10 +181,6 @@
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
 
-"@types/jquery@^2.0.40":
-  version "2.0.41"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.41.tgz#b87ba051011f99edbe586d8f97282e7786e01a6d"
-
 "@types/lodash@^4.14.63":
   version "4.14.63"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.63.tgz#5ac475f55bfdc62bc88c4239dbc482f2f3bead93"
@@ -275,13 +271,6 @@ angular-oauth2-oidc@^1.0.20:
     base64-js "^1.2.0"
     js-base64 "^2.1.9"
     sha256 "^0.2.0"
-
-angular2-froala-wysiwyg@^2.5.1-2:
-  version "2.5.1-2"
-  resolved "https://registry.yarnpkg.com/angular2-froala-wysiwyg/-/angular2-froala-wysiwyg-2.5.1-2.tgz#5dcaa0f46cdd693cefd6eebaeb48d2fb806ad46e"
-  dependencies:
-    "@types/jquery" "^2.0.40"
-    froala-editor ">=2.5.1"
 
 angular2-jwt@^0.2.0:
   version "0.2.2"
@@ -1863,10 +1852,6 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-font-awesome@>=4.4.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
-
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -1900,13 +1885,6 @@ forwarded@~0.1.0:
 fresh@0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.0.tgz#f474ca5e6a9246d6fd8e0953cfa9b9c805afa78e"
-
-froala-editor@>=2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-2.5.1.tgz#daf33fd5cbeac1f53952f0114449f921537e4d19"
-  dependencies:
-    font-awesome ">=4.4.0"
-    jquery ">=1.11.0"
 
 fs-access@^1.0.0:
   version "1.0.1"
@@ -2688,7 +2666,7 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery@>=1.11.0, jquery@>=1.9.1, jquery@^3.2.1:
+jquery@>=1.9.1, jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -3198,6 +3176,10 @@ ng-pick-datetime@^4.0.3:
   resolved "https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-4.0.7.tgz#7f6965534ace9cac29bb72bd24815a2b5ba0fcea"
   dependencies:
     moment "^2.17.0"
+
+ng2-ckeditor@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/ng2-ckeditor/-/ng2-ckeditor-1.1.6.tgz#fa3afb86982b725f7f3a609924c64821c2719875"
 
 ng2-toastr@^4.0.1:
   version "4.0.1"
