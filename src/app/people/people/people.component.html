@@ -24,7 +24,7 @@
             <tbody>
             <tr *ngFor="let person of people">
                 <td>
-                    <a routerLink="edit/{{ person.id }}">
+                    <a *ngIf="person.avatar_url" routerLink="edit/{{ person.id }}">
                         <img [src]="person.avatar_url" class="thumbnail" />
                     </a>
                 </td>
