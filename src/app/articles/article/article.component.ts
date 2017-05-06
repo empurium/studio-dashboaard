@@ -37,6 +37,9 @@ export class ArticleComponent implements OnInit {
     public saving: boolean         = false;
     public momentPublished: any    = moment();
     public ckeditorContent: string = '';
+    public ckeditorConfig: any = {
+        height: '700px',
+    };
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
