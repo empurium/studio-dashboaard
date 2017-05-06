@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { CKEditorModule } from 'ng2-ckeditor';
 import { MomentModule } from 'angular2-moment';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StudioModule } from '@freescan/skeleton';
@@ -18,8 +18,7 @@ import { ArticleComponent } from './article/article.component';
     imports: [
         CommonModule,
         FormsModule,
-        FroalaEditorModule.forRoot(),
-        FroalaViewModule.forRoot(),
+        CKEditorModule,
         MomentModule,
         NgxPaginationModule,
 

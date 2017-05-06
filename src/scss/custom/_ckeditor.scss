@@ -1,0 +1,22 @@
+.cke_chrome {
+  border: 1px solid #e1e6ef !important;
+  box-shadow: none !important;
+
+  .cke_top {
+    background: $gray-lightest !important;
+    background-image: none !important;
+  }
+  .cke_bottom {
+    border-top: 1px solid #e1e6ef !important;
+    background: $gray-lightest !important;
+    background-image: none !important;
+  }
+
+  .cke_toolgroup {
+    border-radius: 0 !important;
+  }
+
+  a.cke_combo_button {
+    border-radius: 0 !important;
+  }
+}

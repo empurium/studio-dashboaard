@@ -32,13 +32,11 @@ export class ArticleComponent implements OnInit {
     public tiers: Tier[];
     public tierId: string;
     public tierResources: TierResource[];
-    public article: Article     = new Article();
-    public loading: boolean     = true;
-    public saving: boolean      = false;
-    public momentPublished: any = moment();
-    public froala: any          = {
-        toolbarStickyOffset: 80,
-    };
+    public article: Article        = new Article();
+    public loading: boolean        = true;
+    public saving: boolean         = false;
+    public momentPublished: any    = moment();
+    public ckeditorContent: string = '';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -71,8 +69,9 @@ export class ArticleComponent implements OnInit {
             })
             .subscribe(
                 (response: ArticleResponse) => {
-                    this.loading = false;
-                    this.article = response.data;
+                    this.loading         = false;
+                    this.article         = response.data;
+                    this.ckeditorContent = this.article.content;
                     this.setMomentPublished();
                 },
                 (error: string) => this.alerts.error(null, 'Could not locate this article.'),
@@ -154,7 +153,7 @@ export class ArticleComponent implements OnInit {
     public storeTierResource(): void {
         this.deleteTierResources();
 
-        let tier: Tier|false = this.getTier();
+        let tier: Tier | false = this.getTier();
         if (!tier) {
             return;
         }
@@ -177,7 +176,7 @@ export class ArticleComponent implements OnInit {
     /**
      * Get the Tier by Tier ID.
      */
-    public getTier(): Tier|false {
+    public getTier(): Tier | false {
         let tier: Tier = _.find(this.tiers, { id: this.tierId });
         return tier ? tier : false;
     }
@@ -343,6 +342,7 @@ export class ArticleComponent implements OnInit {
      * Overwrites the values from the form to the Article model for submission.
      */
     private overwrite(values: Article): void {
+        this.article.content = this.ckeditorContent;
         _.each(values, (value: any, key: string) => {
             this.article[key] = value;
         });

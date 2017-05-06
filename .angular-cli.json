@@ -17,12 +17,10 @@
       "prefix": "pstudio",
       "styles": [
         "../node_modules/animate.css/animate.min.css",
-        "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.slim.min.js",
-        "../node_modules/froala-editor/js/froala_editor.pkgd.min.js"
+        "../node_modules/jquery/dist/jquery.slim.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
