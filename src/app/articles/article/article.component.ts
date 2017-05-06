@@ -32,7 +32,7 @@ export class ArticleComponent implements OnInit {
     public momentPublished: any    = moment();
     public ckeditorContent: string = '';
     public ckeditorConfig: any     = {
-        height: '700px',
+        height: '450px',
     };
 
     constructor(private route: ActivatedRoute,

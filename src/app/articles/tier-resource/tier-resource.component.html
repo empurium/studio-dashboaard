@@ -1,4 +1,4 @@
 <select [(ngModel)]="tierId" name="tierId" #tier (change)="store(tier.value)" [disabled]="saving || !referenceId" class="form-control">
-    <option value="">Free</option>
+    <option value="">Free for everyone</option>
     <option *ngFor="let tier of tiers" [value]="tier.id">{{ tier.name }}</option>
 </select>

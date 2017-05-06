@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="col-sm-12 col-md-3">
-                    <label>Payment Tier</label>
+                    <label>Visibility</label>
                     <pstudio-tier-resource [referenceId]="article.id" (changed)="handleTierChange($event)"></pstudio-tier-resource>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="col-sm-12 col-md-9">
                     <label for="preview">Preview
                         <span class="text-muted">
-                            - free content
+                            - visible to everyone
                         </span>
                     </label>
                     <textarea [(ngModel)]="article.preview" rows="4" name="preview" id="preview" placeholder="Preview"
