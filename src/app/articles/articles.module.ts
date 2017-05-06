@@ -12,6 +12,7 @@ import { ArticlesRoutingModule } from './articles.routing';
 // Components
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
+import { TierResourceComponent } from './tier-resource/tier-resource.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ArticleComponent } from './article/article.component';
     declarations: [
         ArticlesComponent,
         ArticleComponent,
+        TierResourceComponent,
     ],
 })
 export class ArticlesModule {

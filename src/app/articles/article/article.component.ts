@@ -14,10 +14,6 @@ import {
     ArticleService,
     ArticleResponse,
     Tier,
-    TierService,
-    TierResource,
-    TierResourceService,
-    TierResourceResponse,
 } from '@freescan/skeleton';
 
 
@@ -28,16 +24,14 @@ import {
     encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit {
+    public tier: Tier;
     public people: Person[];
-    public tiers: Tier[];
-    public tierId: string;
-    public tierResources: TierResource[];
     public article: Article        = new Article();
     public loading: boolean        = true;
     public saving: boolean         = false;
     public momentPublished: any    = moment();
     public ckeditorContent: string = '';
-    public ckeditorConfig: any = {
+    public ckeditorConfig: any     = {
         height: '700px',
     };
 
@@ -46,14 +40,11 @@ export class ArticleComponent implements OnInit {
                 private authentication: AuthenticationService,
                 private alerts: AlertService,
                 private peopleService: PeopleService,
-                private tierService: TierService,
-                private tierResourceService: TierResourceService,
                 private articleService: ArticleService) {
     }
 
     public ngOnInit(): void {
         this.loadArticle();
-        this.loadTiers();
         this.loadPeople();
     }
 
@@ -64,10 +55,6 @@ export class ArticleComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => {
                 this.loading = !!params.id;
-                if (params.id) {
-                    this.loadTierResources(params.id);
-                }
-
                 return params.id ? this.articleService.one(params.id) : Observable.empty();
             })
             .subscribe(
@@ -78,40 +65,6 @@ export class ArticleComponent implements OnInit {
                     this.setMomentPublished();
                 },
                 (error: string) => this.alerts.error(null, 'Could not locate this article.'),
-            );
-    }
-
-    /**
-     * Request the tiers for this white label so they can assign articles to them.
-     */
-    public loadTiers(): void {
-        this.tierService
-            .all()
-            .subscribe(
-                (tiers: Tier[]) => {
-                    this.tiers = tiers;
-                    this.setTierId();
-                },
-                (error: string) => this.alerts.warning(
-                    null, 'There are no payment tiers available to assign to.',
-                ),
-            );
-    }
-
-    /**
-     * Request the Tier Resource for a given article.
-     */
-    public loadTierResources(articleId: string): void {
-        this.tierResourceService
-            .for(articleId)
-            .subscribe(
-                (tierResources: TierResource[]) => {
-                    this.tierResources = tierResources;
-                    this.setTierId();
-                },
-                (error: string) => this.alerts.warning(
-                    null, 'Error loading Payment Tier Resources for this publication.',
-                ),
             );
     }
 
@@ -138,8 +91,6 @@ export class ArticleComponent implements OnInit {
         this.overwrite(form.form.value);
         this.setPublishedAt(this.article.published_at);
 
-        this.storeTierResource();
-
         if (!this.article.id) {
             this.setPersonId();
             this.post();
@@ -150,26 +101,6 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
-     * Store the selected Tier Resource.
-     * TODO - support more than one Tier Resource at a time.
-     */
-    public storeTierResource(): void {
-        this.deleteTierResources();
-
-        let tier: Tier | false = this.getTier();
-        if (!tier) {
-            return;
-        }
-
-        if (!this.tierResources || !this.tierResources.length) {
-            this.postTierResources(tier);
-            return;
-        }
-
-        this.putTierResources(tier);
-    }
-
-    /**
      * Cancel the edit and navigate back.
      */
     public cancel(): void {
@@ -177,32 +108,17 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
-     * Get the Tier by Tier ID.
+     * Change the Tier when the TierResourceComponent emits the event.
      */
-    public getTier(): Tier | false {
-        let tier: Tier = _.find(this.tiers, { id: this.tierId });
-        return tier ? tier : false;
+    public handleTierChange(tier: Tier): void {
+        this.tier = tier;
     }
 
     /**
-     * Get the Tier name by Tier ID for the template.
+     * Retrieve an appropriate label for the current Tier this article is saved to.
      */
-    public getTierName(): string {
-        let tier: Tier = _.find(this.tiers, { id: this.tierId });
-        return tier ? tier.name : 'all';
-    }
-
-    /**
-     * Get the Tier Resource by Tier ID.
-     */
-    public getTierResource(): TierResource {
-        // We map() out the tier data so we can find() it by tierId
-        let tierResource: any = _.find(
-            _.map(this.tierResources, (t: TierResource) => t.tier ? t.tier.data : {}),
-            { id: this.tierId },
-        );
-
-        return tierResource;
+    public tierLabel(): string {
+        return this.tier ? this.tier.name : 'all';
     }
 
     /**
@@ -240,16 +156,6 @@ export class ArticleComponent implements OnInit {
     }
 
     /**
-     * Set the Tier based on the Tier Resources this article is assigned to.
-     */
-    private setTierId(): void {
-        let tierId: any = _.get(_.first(this.tierResources), 'tier.data.id');
-        let tier: Tier  = _.find(this.tiers, { id: tierId });
-
-        this.tierId = tier ? tier.id : '';
-    }
-
-    /**
      * POST the article.
      */
     private post(): void {
@@ -279,66 +185,6 @@ export class ArticleComponent implements OnInit {
                 },
                 (error: any) => this.alerts.errorMessage(error),
             );
-    }
-
-    /**
-     * POST the Tier Resources for this article.
-     */
-    private postTierResources(tier: Tier): void {
-        this.tierResourceService
-            .post(tier, this.article.id)
-            .subscribe(
-                (response: TierResource): void => {
-                    this.alerts.success(null, `Saved to ${tier.name} payment tier.`);
-                },
-                (error: any): void => {
-                    this.alerts.error(null, `Could not save to ${tier.name} payment tier!`);
-                },
-            );
-    }
-
-    /**
-     * PUT the Tier Resource to update the tier_id accordingly.
-     */
-    private putTierResources(tier: Tier): void {
-        let tierResource: any = this.getTierResource();
-        if (!tierResource) {
-            return;
-        }
-
-        tierResource.tier_id = this.tierId;
-
-        this.tierResourceService
-            .put(tierResource)
-            .subscribe(
-                (response: TierResourceResponse): void => {
-                    this.alerts.success(null, `Saved to ${tier.name} payment tier.`);
-                },
-                (error: any): void => {
-                    this.alerts.error(null, `Could not save to ${tier.name} payment tier!`);
-                },
-            );
-    }
-
-    /**
-     * DELETE all existing Tier Resources if the article was marked as Free.
-     * Does not delete if there was no change.
-     */
-    private deleteTierResources(): void {
-        if (this.tierId === _.get(this.tierResources, 'tier.data.id')) {
-            return;
-        }
-
-        _.each(this.tierResources, (tierResource: TierResource) => {
-            this.tierResourceService
-                .delete(tierResource)
-                .subscribe(
-                    () => {
-                        this.tierResources = [];
-                        this.alerts.warning(null, 'Removed from payment tier.');
-                    },
-                );
-        });
     }
 
     /**
