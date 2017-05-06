@@ -130,7 +130,7 @@ export class FilesComponent implements OnInit {
             .associate(file, this.referenceId)
             .subscribe(
                 (response: FileResponse) => {
-                    this.files.push(file);
+                    this.files.push(response.data);
                     this.remove(file);
                 },
                 (error: ErrorMessage) => this.alerts.errorMessage(error),
