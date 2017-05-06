@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
@@ -16,8 +15,6 @@ import {
     ArticleResponse,
     Tier,
 } from '@freescan/skeleton';
-
-import { environment } from '@env/environment';
 
 
 @Component({
@@ -37,12 +34,6 @@ export class ArticleComponent implements OnInit {
     public ckeditorConfig: any     = {
         height: '700px',
     };
-
-    // Uploader
-    public formData: FormData;
-    public files: UploadFile[]                    = [];
-    public uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();
-    public humanizeBytes: Function                = humanizeBytes;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -107,55 +98,6 @@ export class ArticleComponent implements OnInit {
         }
 
         this.put();
-    }
-
-    public onUploadOutput(output: UploadOutput): void {
-        console.log(output);
-
-        if (output.type === 'allAddedToQueue') { // when all files added in queue
-            // uncomment this if you want to auto upload files when added
-            // const event: UploadInput = {
-            //   type: 'uploadAll',
-            //   url: '/upload',
-            //   method: 'POST',
-            //   data: { foo: 'bar' },
-            //   concurrency: 0
-            // };
-            // this.uploadInput.emit(event);
-        } else if (output.type === 'addedToQueue') {
-            this.files.push(output.file);
-        } else if (output.type === 'uploading') {
-            // update current data in files array for uploading file
-            const index: number = this.files.findIndex((file: UploadFile) => {
-                return file.id === output.file.id;
-            });
-
-            this.files[index]   = output.file;
-        } else if (output.type === 'removed') {
-            // remove file from array when removed
-            this.files = this.files.filter((file: UploadFile) => file !== output.file);
-        } else if (output.type === 'done') {
-            this.alerts.success(null, `${output.file.name} uploaded.`);
-            // this.files delete
-        }
-    }
-
-    public startUpload(): void {  // manually start uploading
-        const event: UploadInput = {
-            type:        'uploadAll',
-            url:         environment.api.files,
-            method:      'POST',
-            headers:     {
-                'Authorization': `Bearer ${this.authentication.token()}`,
-            },
-            concurrency: 1,
-        };
-
-        this.uploadInput.emit(event);
-    }
-
-    public cancelUpload(id: string): void {
-        this.uploadInput.emit({ type: 'cancel', id: id });
     }
 
     /**

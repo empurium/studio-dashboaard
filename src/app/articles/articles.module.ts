@@ -14,6 +14,7 @@ import { ArticlesRoutingModule } from './articles.routing';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { TierResourceComponent } from './tier-resource/tier-resource.component';
+import { FilesComponent } from './files/files.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { TierResourceComponent } from './tier-resource/tier-resource.component';
         ArticlesComponent,
         ArticleComponent,
         TierResourceComponent,
+        FilesComponent,
     ],
 })
 export class ArticlesModule {
