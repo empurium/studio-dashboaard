@@ -4,7 +4,10 @@
     </div>
 </div>
 
-<div class="card animated fadeIn" *ngFor="let article of articles">
+<studio-loading [show]="loading"></studio-loading>
+
+<div *ngFor="let article of articles | async | paginate: { itemsPerPage: limit, currentPage: page, totalItems: total }"
+     class="card animated fadeIn">
     <div class="card-block">
         <div class="row">
             <div class="col-sm-12 col-md-3">
@@ -28,5 +31,11 @@
                 <p>{{ article.preview }}</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!loading">
+    <div class="col-sm-12 text-center">
+        <pagination-controls (pageChange)="load($event)"></pagination-controls>
     </div>
 </div>

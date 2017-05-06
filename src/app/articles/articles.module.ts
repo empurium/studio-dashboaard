@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { CKEditorModule } from 'ng2-ckeditor';
 import { MomentModule } from 'angular2-moment';
 import { NgUploaderModule } from 'ngx-uploader';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { StudioModule } from '@freescan/skeleton';
 
 // Core
@@ -12,16 +13,17 @@ import { ArticlesRoutingModule } from './articles.routing';
 // Components
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
+import { TierResourceComponent } from './tier-resource/tier-resource.component';
 
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        FroalaEditorModule.forRoot(),
-        FroalaViewModule.forRoot(),
+        CKEditorModule,
         MomentModule,
         NgUploaderModule,
+        NgxPaginationModule,
 
         StudioModule,
         ArticlesRoutingModule,
@@ -30,6 +32,7 @@ import { ArticleComponent } from './article/article.component';
     declarations: [
         ArticlesComponent,
         ArticleComponent,
+        TierResourceComponent,
     ],
 })
 export class ArticlesModule {
