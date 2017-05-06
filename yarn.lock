@@ -164,9 +164,9 @@
     ngx-pagination "^3.0.0"
     zone.js "^0.8.5"
 
-"@freescan/skeleton@^1.9.2":
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.9.2.tgz#2ab9f61b3304f4dae8fcdf05993da990923c0d74"
+"@freescan/skeleton@^1.9.3":
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.9.3.tgz#d209c6984104641accd07cd635af09d9ade2c9bd"
   dependencies:
     "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"
