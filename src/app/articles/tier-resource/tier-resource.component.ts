@@ -123,6 +123,9 @@ export class TierResourceComponent implements OnInit {
                         this.saving = false;
                         this.alerts.warning(null, 'Removed from payment tier.');
                     },
+                    (error: any): void => {
+                        this.alerts.errorMessage(error);
+                    },
                 );
         });
 
