@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="files && files.length" class="row">
     <div class="col-sm-12">
         <div class="card animated fadeIn">
             <div class="card-block">
@@ -7,15 +7,74 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th></th>
+                        <th>Thumbnail URL</th>
+                        <th>Display Name</th>
+                        <th>Visibility</th>
+                        <th>&nbsp;</th>
                     </tr>
                     </thead>
+                    <tbody>
+                    <tr *ngFor="let file of files">
+                        <td>
+                            <img *ngIf="file.thumbnail_url" [src]="file.thumbnail_url" class="thumbnail" />
+                            <input *ngIf="!file.thumbnail_url" [(ngModel)]="file.thumbnail_url" name="thumbnail_url" type="text" class="form-control" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="file.display_name" name="display_name" type="text" class="form-control" />
+                        </td>
+                        <td>
+                            <pstudio-tier-resource [referenceId]="file.id"></pstudio-tier-resource>
+                        </td>
+                        <td class="text-right">
+                            <button (click)="store(file)" [disabled]="true" class="btn btn-secondary btn-pointer">
+                                Save
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="uploadFiles && uploadFiles.length" class="row">
+    <div class="col-sm-12">
+        <div class="card animated fadeIn">
+            <div class="card-block animated fadeIn">
+                <h4>Files to Upload</h4>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>File Name</th>
+                        <th>Display Name</th>
+                        <th>Thumbnail URL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let file of uploadFiles">
+                        <td>
+                            <button (click)="remove(file)" class="btn btn-sm btn-outline-danger btn-pointer">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </td>
+                        <td><strong>{{ file.name }}</strong></td>
+                        <td>
+                            <input [(ngModel)]="file.display_name" name="display_name" type="text" class="form-control" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="file.thumbnail_url" name="thumbnail_url" type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    </tbody>
                 </table>
 
-                <div *ngFor="let file of files" class="col-sm-6 col-md-3">
-                    <h4>{{ file.display_name }}</h4>
-                    <p><a [href]="file.url" target="_blank">View File</a></p>
-                    <pstudio-tier-resource [referenceId]="file.id"></pstudio-tier-resource>
+                <div class="text-right">
+                    <button (click)="upload()" class="btn btn-lg btn-secondary btn-pointer start-upload-btn">
+                        Upload
+                    </button>
                 </div>
             </div>
         </div>
@@ -24,35 +83,19 @@
 
 <div *ngIf="referenceId" class="file-upload-container mt-2 mb-3">
     <div ngFileDrop class="drop-container" [class.is-drop-over]="dragOver"
-         (uploadOutput)="onUploadOutput($event)"
+         (uploadOutput)="uploadOutput($event)"
          [uploadInput]="uploadInput">
-        <div class="row">
-            <div class="drop-files col-sm-4">
-                <ul>
-                    <li *ngFor="let file of uploadFiles">
-                        <strong>{{ file.name }}</strong>
-                    </li>
-                </ul>
-            </div>
+        <div class="text-center">
+            <label class="upload-button btn btn-lg btn-secondary btn-pointer">
+              Choose File(s)
+              <input type="file"
+                     ngFileSelect
+                     (uploadOutput)="uploadOutput($event)"
+                     [uploadInput]="uploadInput"
+                     multiple>
+            </label>
 
-            <div class="col-sm-4 text-center">
-                <label class="upload-button btn btn-lg btn-secondary btn-pointer">
-                  Choose File(s)
-                  <input type="file"
-                         ngFileSelect
-                         (uploadOutput)="onUploadOutput($event)"
-                         [uploadInput]="uploadInput"
-                         multiple>
-                </label>
-
-                <h2 class="mt-1">or Drag &amp; Drop Here</h2>
-            </div>
-
-            <div class="col-sm-4 text-right">
-                <button (click)="startUpload()" class="btn btn-lg btn-primary btn-pointer start-upload-btn">
-                    Upload
-                </button>
-            </div>
+            <h2 class="mt-1">or Drag &amp; Drop Here</h2>
         </div>
     </div>
 </div>

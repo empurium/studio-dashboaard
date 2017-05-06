@@ -11,6 +11,16 @@ import {
 
 import { environment } from '@env/environment';
 
+// Customize the upload to assign our API properties
+interface UploadFileCustom extends UploadFile {
+    display_name: string;
+    thumbnail_url: string;
+    url: string;
+}
+interface UploadOutputCustom extends UploadOutput {
+    file: UploadFileCustom;
+}
+
 
 @Component({
     selector:      'pstudio-files',
@@ -25,7 +35,7 @@ export class FilesComponent implements OnInit {
     public saving: boolean  = false;
 
     // Uploader
-    public uploadFiles: UploadFile[]              = [];
+    public uploadFiles: UploadFileCustom[]        = [];
     public uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();
     public humanizeBytes: Function                = humanizeBytes;
 
@@ -55,7 +65,12 @@ export class FilesComponent implements OnInit {
             );
     }
 
-    public onUploadOutput(output: UploadOutput): void {
+    /**
+     * Handle output during the upload process.
+     * Everything from adding or removing files to/from the queue to finishing
+     * the upload process itself.
+     */
+    public uploadOutput(output: UploadOutputCustom): void {
         console.log(output);
 
         if (output.type === 'allAddedToQueue') {
@@ -70,13 +85,14 @@ export class FilesComponent implements OnInit {
 
             this.uploadFiles[index] = output.file;
         } else if (output.type === 'removed') {
-            // remove file from array when removed
             this.uploadFiles = this.uploadFiles.filter((file: UploadFile) => file !== output.file);
         } else if (output.type === 'done') {
             const filename: string = output.file.response.data.name;
             let file: File = {
-                display_name: 'test',
-                url: `${environment.api.files}/${filename}`,
+                id:            output.file.id || '',
+                display_name:  output.file.display_name || output.file.name,
+                thumbnail_url: output.file.thumbnail_url,
+                url:           `${environment.api.files}/${filename}`,
             };
 
             this.associate(file);
@@ -84,7 +100,10 @@ export class FilesComponent implements OnInit {
         }
     }
 
-    public startUpload(): void {
+    /**
+     * Upload all files added to the upload queue.
+     */
+    public upload(): void {
         const event: UploadInput = {
             type:        'uploadAll',
             url:         environment.api.files,
@@ -97,13 +116,23 @@ export class FilesComponent implements OnInit {
     }
 
     /**
+     * Remove a file from the queue.
+     */
+    public remove(file: File): void {
+        this.uploadFiles = this.uploadFiles.filter((f: File) => f.id !== file.id);
+    }
+
+    /**
      * Associate a file with this reference identifier.
      */
     public associate(file: File): void {
         this.fileService
             .associate(file, this.referenceId)
             .subscribe(
-                (response: FileResponse) => this.files.push(file),
+                (response: FileResponse) => {
+                    this.files.push(file);
+                    this.remove(file);
+                },
                 (error: ErrorMessage) => this.alerts.errorMessage(error),
             );
     }
