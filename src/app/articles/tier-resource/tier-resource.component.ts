@@ -61,9 +61,9 @@ export class TierResourceComponent implements OnInit {
                     this.tierResources = tierResources;
                     this.selectCurrent();
                 },
-                (error: string) => this.alerts.warning(
-                    null, 'Error loading Payment Tier Resources for this asset.',
-                ),
+                (error: string) => {
+                    // May not be any tier resources for this reference identifier
+                },
             );
     }
 
