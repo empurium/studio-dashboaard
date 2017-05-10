@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
+import { ErrorMessage } from '@freescan/http';
 import {
     AuthenticationService,
     AlertService,
@@ -98,6 +99,23 @@ export class ArticleComponent implements OnInit {
         }
 
         this.put();
+    }
+
+    /**
+     * Delete an article.
+     */
+    public delete(article: Article): void {
+        if (confirm(`Are you sure you want to DELETE this article?\n\n${article.title}`)) {
+            this.articleService
+                .delete(article)
+                .subscribe(
+                    () => {
+                        this.alerts.success('Deleted', article.title);
+                        this.router.navigate(['../']);
+                    },
+                    (error: ErrorMessage) => this.alerts.errorMessage(error),
+                );
+        }
     }
 
     /**

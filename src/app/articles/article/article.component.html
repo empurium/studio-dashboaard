@@ -94,8 +94,11 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="col-sm-6">
-                        <button (click)="cancel()" class="btn btn-secondary btn-pointer btn-lg">
+                        <button type="button" (click)="cancel()" class="btn btn-secondary btn-pointer btn-lg mr-1">
                             Cancel
+                        </button>
+                        <button type="button" (click)="delete(article)" class="btn btn-outline-danger btn-pointer btn-lg">
+                            Delete
                         </button>
                     </div>
 
