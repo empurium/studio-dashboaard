@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UnavailableComponent } from '@freescan/skeleton';
+import { UnavailableComponent, ArticlesComponent, ArticleComponent } from '@freescan/skeleton';
 
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-    {
-        path:      '',
-        component: HomeComponent,
-    },
     {
         path:         'publications',
         loadChildren: './articles/articles.module#ArticlesModule',
@@ -16,6 +12,22 @@ export const routes: Routes = [
     {
         path:         'authors',
         loadChildren: './people/people.module#PeopleModule',
+    },
+
+    // Home matches empty :slug param, so load last
+    {
+        path:      '',
+        component: HomeComponent,
+        children:  [
+            {
+                path:      '',
+                component: ArticlesComponent,
+            },
+            {
+                path:      ':slug',
+                component: ArticleComponent,
+            },
+        ],
     },
 
     // 404
