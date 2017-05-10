@@ -11,10 +11,13 @@
          class="card animated fadeIn">
         <div class="card-block">
             <div class="row">
-                <div class="col-sm-12 col-md-3">
-                    <a routerLink="edit/{{ article.id }}">
+                <div class="col-sm-12 col-md-3 text-center">
+                    <a *ngIf="article.image_url" routerLink="edit/{{ article.id }}">
                         <img src="{{ article.image_url }}" class="thumbnail" />
                     </a>
+                    <div *ngIf="!article.image_url" class="text-danger">
+                        No Thumbnail
+                    </div>
                 </div>
                 <div class="col-sm-12 col-md-9">
                     <h5 class="card-title mb-0">
