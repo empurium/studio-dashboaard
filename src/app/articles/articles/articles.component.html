@@ -1,41 +1,43 @@
-<div class="card">
-    <div class="card-block text-right">
-        <a routerLink="new" class="btn btn-primary">New Publication</a>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-block text-right">
+            <a routerLink="new" class="btn btn-primary">New Publication</a>
+        </div>
     </div>
-</div>
 
-<studio-loading [show]="loading"></studio-loading>
+    <studio-loading [show]="loading"></studio-loading>
 
-<div *ngFor="let article of articles | async | paginate: { itemsPerPage: limit, currentPage: page, totalItems: total }"
-     class="card animated fadeIn">
-    <div class="card-block">
-        <div class="row">
-            <div class="col-sm-12 col-md-3">
-                <a routerLink="edit/{{ article.id }}">
-                    <img src="{{ article.image_url }}" class="thumbnail" />
-                </a>
-            </div>
-            <div class="col-sm-12 col-md-9">
-                <h5 class="card-title mb-0">
-                    <a routerLink="edit/{{ article.id }}">{{ article.title }}</a>
-                </h5>
-
-                <div class="text-muted mb-1">
-                    {{ article.published_at | date:'medium' }} - {{ published(article) }}
-                    <br />
-                    <span *ngIf="article.person">
-                        by {{ article.person.data.display_name }}
-                    </span>
+    <div *ngFor="let article of articles | async | paginate: { itemsPerPage: limit, currentPage: page, totalItems: total }"
+         class="card animated fadeIn">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <a routerLink="edit/{{ article.id }}">
+                        <img src="{{ article.image_url }}" class="thumbnail" />
+                    </a>
                 </div>
+                <div class="col-sm-12 col-md-9">
+                    <h5 class="card-title mb-0">
+                        <a routerLink="edit/{{ article.id }}">{{ article.title }}</a>
+                    </h5>
 
-                <p>{{ article.preview }}</p>
+                    <div class="text-muted mb-1">
+                        {{ article.published_at | date:'medium' }} - {{ published(article) }}
+                        <br />
+                        <span *ngIf="article.person">
+                            by {{ article.person.data.display_name }}
+                        </span>
+                    </div>
+
+                    <p>{{ article.preview }}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row" *ngIf="!loading">
-    <div class="col-sm-12 text-center">
-        <pagination-controls (pageChange)="load($event)"></pagination-controls>
+    <div class="row" *ngIf="!loading">
+        <div class="col-sm-12 text-center">
+            <pagination-controls (pageChange)="load($event)"></pagination-controls>
+        </div>
     </div>
 </div>

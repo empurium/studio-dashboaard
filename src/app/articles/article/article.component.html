@@ -1,114 +1,116 @@
-<studio-loading [show]="loading"></studio-loading>
+<div class="container mt-2">
+    <studio-loading [show]="loading"></studio-loading>
 
-<form (ngSubmit)="store(form)" #form="ngForm">
-    <div class="card animated fadeIn" *ngIf="!loading">
-        <div class="card-block">
-            <div class="row form-group">
-                <div class="col-sm-12">
-                    <input [(ngModel)]="article.title" name="title" id="title" type="text" placeholder="Title"
-                           class="form-control input-lg" required minlength="8"/>
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col-sm-12 col-md-6">
-                    <label for="image_url">Thumbnail image URL</label>
-                    <div class="input-group">
-                        <input [(ngModel)]="article.image_url" name="image_url" id="image_url" type="text"
-                               placeholder="Image URL" class="form-control" required/>
-                        <span class="input-group-btn">
-                          <a href="{{ article.image_url }}" class="btn btn-primary btn-pointer" target="_blank">
-                              <i class="fa fa-external-link" aria-hidden="true"></i>
-                          </a>
-                        </span>
+    <form (ngSubmit)="store(form)" #form="ngForm">
+        <div class="card animated fadeIn" *ngIf="!loading">
+            <div class="card-block">
+                <div class="row form-group">
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="article.title" name="title" id="title" type="text" placeholder="Title"
+                               class="form-control input-lg" required minlength="8"/>
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-3">
-                    <label for="person_id">Author</label>
-                    <select [(ngModel)]="article.person_id" name="person_id" id="person_id" class="form-control">
-                        <option *ngFor="let person of people" [value]="person.id">
-                            {{ person.first_name }} {{ person.last_name }}
-                        </option>
-                    </select>
+                <div class="row form-group">
+                    <div class="col-sm-12 col-md-6">
+                        <label for="image_url">Thumbnail image URL</label>
+                        <div class="input-group">
+                            <input [(ngModel)]="article.image_url" name="image_url" id="image_url" type="text"
+                                   placeholder="Image URL" class="form-control" required/>
+                            <span class="input-group-btn">
+                              <a href="{{ article.image_url }}" class="btn btn-primary btn-pointer" target="_blank">
+                                  <i class="fa fa-external-link" aria-hidden="true"></i>
+                              </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <label for="person_id">Author</label>
+                        <select [(ngModel)]="article.person_id" name="person_id" id="person_id" class="form-control">
+                            <option *ngFor="let person of people" [value]="person.id">
+                                {{ person.first_name }} {{ person.last_name }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <label>Visibility</label>
+                        <pstudio-tier-resource [referenceId]="article.id" (changed)="handleTierChange($event)"></pstudio-tier-resource>
+                    </div>
                 </div>
 
-                <div class="col-sm-12 col-md-3">
-                    <label>Visibility</label>
-                    <pstudio-tier-resource [referenceId]="article.id" (changed)="handleTierChange($event)"></pstudio-tier-resource>
+                <div class="row form-group">
+                    <div class="col-sm-12 col-md-9">
+                        <label for="preview">Preview
+                            <span class="text-muted">
+                                - visible to everyone
+                            </span>
+                        </label>
+                        <textarea [(ngModel)]="article.preview" rows="4" name="preview" id="preview" placeholder="Preview"
+                                  class="form-control"></textarea>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <label for="published_at">Published At</label>
+                        <input name="momentPublished"
+                               [ngModel]="momentPublished | amDateFormat:'LLL'"
+                               [(dateTimePicker)]="momentPublished"
+                               [pickerType]="'both'"
+                               [mode]="'dropdown'"
+                               [hourTime]="'12'"
+                               (dateTimePickerChange)="setPublishedAt($event)"
+                               id="published_at"
+                               type="datetime"
+                               class="form-control cursor-pointer"
+                               readonly
+                               required/>
+                    </div>
+                </div>
+
+                <div class="row form-group mb-0">
+                    <div class="col-sm-12 col-md-9">
+                        <label for="content">Content
+                            <span class="text-muted">
+                                - visible to <strong>{{ tierLabel() }}</strong> users
+                            </span>
+                        </label>
+                        <div id="content"></div>
+                        <ckeditor
+                                name="ckeditorContent"
+                                [(ngModel)]="ckeditorContent"
+                                [config]="ckeditorConfig"
+                                debounce="500">
+                        </ckeditor>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <label for="thumbnail">Thumbnail</label>
+                        <img *ngIf="article.image_url" src="{{ article.image_url }}" class="thumbnail" id="thumbnail"/>
+                        <div *ngIf="!article.image_url" class="text-danger">None</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row form-group">
-                <div class="col-sm-12 col-md-9">
-                    <label for="preview">Preview
-                        <span class="text-muted">
-                            - visible to everyone
-                        </span>
-                    </label>
-                    <textarea [(ngModel)]="article.preview" rows="4" name="preview" id="preview" placeholder="Preview"
-                              class="form-control"></textarea>
-                </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button (click)="cancel()" class="btn btn-secondary btn-pointer btn-lg">
+                            Cancel
+                        </button>
+                    </div>
 
-                <div class="col-sm-12 col-md-3">
-                    <label for="published_at">Published At</label>
-                    <input name="momentPublished"
-                           [ngModel]="momentPublished | amDateFormat:'LLL'"
-                           [(dateTimePicker)]="momentPublished"
-                           [pickerType]="'both'"
-                           [mode]="'dropdown'"
-                           [hourTime]="'12'"
-                           (dateTimePickerChange)="setPublishedAt($event)"
-                           id="published_at"
-                           type="datetime"
-                           class="form-control cursor-pointer"
-                           readonly
-                           required/>
-                </div>
-            </div>
-
-            <div class="row form-group mb-0">
-                <div class="col-sm-12 col-md-9">
-                    <label for="content">Content
-                        <span class="text-muted">
-                            - visible to <strong>{{ tierLabel() }}</strong> users
-                        </span>
-                    </label>
-                    <div id="content"></div>
-                    <ckeditor
-                            name="ckeditorContent"
-                            [(ngModel)]="ckeditorContent"
-                            [config]="ckeditorConfig"
-                            debounce="500">
-                    </ckeditor>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <label for="thumbnail">Thumbnail</label>
-                    <img *ngIf="article.image_url" src="{{ article.image_url }}" class="thumbnail" id="thumbnail"/>
-                    <div *ngIf="!article.image_url" class="text-danger">None</div>
+                    <div class="col-sm-6 text-right">
+                        <button type="submit" [disabled]="!form.form.valid || saving"
+                                class="btn btn-primary btn-pointer btn-lg">
+                            Save
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+    </form>
 
-        <div class="card-footer">
-            <div class="row">
-                <div class="col-sm-6">
-                    <button (click)="cancel()" class="btn btn-secondary btn-pointer btn-lg">
-                        Cancel
-                    </button>
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    <button type="submit" [disabled]="!form.form.valid || saving"
-                            class="btn btn-primary btn-pointer btn-lg">
-                        Save
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div *ngIf="article && article.id">
+        <pstudio-files [referenceId]="article.id"></pstudio-files>
     </div>
-</form>
-
-<div *ngIf="article && article.id">
-    <pstudio-files [referenceId]="article.id"></pstudio-files>
 </div>
