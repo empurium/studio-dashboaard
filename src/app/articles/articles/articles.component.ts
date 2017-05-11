@@ -34,7 +34,7 @@ export class ArticlesComponent implements OnInit {
         this.loading = true;
 
         this.articles = this.articlesService
-            .all(page, this.limit)
+            .all({ page, limit: this.limit })
             .do(
                 (response: ArticlesResponse) => {
                     this.loading = false;
