@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routing';
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ArticleWrapperComponent } from './article-wrapper/article-wrapper.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     declarations: [
         AppComponent,
         HomeComponent,
+        ArticleWrapperComponent,
     ],
 
     providers: [
