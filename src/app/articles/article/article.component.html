@@ -1,7 +1,7 @@
 <div class="container mt-2">
     <studio-loading [show]="loading"></studio-loading>
 
-    <form (ngSubmit)="store(form)" #form="ngForm">
+    <form (ngSubmit)="store()" #form="ngForm">
         <div class="card animated fadeIn" *ngIf="!loading">
             <div class="card-block">
                 <div class="row form-group">
@@ -36,7 +36,12 @@
 
                     <div class="col-sm-12 col-md-3">
                         <label>Visibility</label>
-                        <pstudio-tier-resource [referenceId]="article.id" (changed)="handleTierChange($event)"></pstudio-tier-resource>
+                        <pstudio-tier-resource
+                                #articleTier
+                                [ambitious]="false"
+                                [referenceId]="article.id"
+                                (changed)="handleTierChange($event)">
+                        </pstudio-tier-resource>
                     </div>
                 </div>
 

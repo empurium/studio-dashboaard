@@ -15,7 +15,9 @@ import {
 })
 export class TierResourceComponent implements OnInit {
     @Input() public referenceId: string;
-    @Output() public changed: EventEmitter<Tier> = new EventEmitter();
+    @Input() public ambitious: boolean = true;
+    @Input() public storeEvent: EventEmitter<Tier|null> = new EventEmitter();
+    @Output() public changed: EventEmitter<Tier|null> = new EventEmitter();
     public tierResources: TierResource[] = [];
     public tiers: Tier[];
     public tierId: string;
@@ -29,6 +31,8 @@ export class TierResourceComponent implements OnInit {
     public ngOnInit(): void {
         this.loadTiers();
         this.load();
+
+        this.storeEvent.subscribe((tier: Tier|null) => this.store(tier));
     }
 
     /**
@@ -68,15 +72,29 @@ export class TierResourceComponent implements OnInit {
     }
 
     /**
+     * Form calls this method to store the tier resource, but it
+     * will not execute if the ambitious option is used.
+     */
+    public formStore(tierId: string): void {
+        let tier: Tier | null = this.getTier();
+
+        if (!this.ambitious) {
+            this.changed.emit(tier);
+            return;
+        }
+
+        this.store(tier);
+    }
+
+    /**
      * Save to the server.
      * Deletes Tier Resources if marked Free, otherwise creates.
      * TODO - Support more than one active Tier. Perhaps check boxes.
      */
-    public store(tierId: string): void {
-        let tier: Tier | false = this.getTier();
+    public store(tier: Tier): void {
         this.saving = true;
 
-        if (tierId === '') {
+        if (tier === null) {
             this.free();
             return;
         }
@@ -129,6 +147,10 @@ export class TierResourceComponent implements OnInit {
                 );
         });
 
+        if (!this.tierResources) {
+            this.saving = false;
+        }
+
         this.tierResources = [];
         this.changed.emit(null);
     }
@@ -136,9 +158,9 @@ export class TierResourceComponent implements OnInit {
     /**
      * Get the Tier by Tier ID.
      */
-    private getTier(): Tier | false {
+    private getTier(): Tier | null {
         let tier: Tier = _.find(this.tiers, { id: this.tierId });
-        return tier ? tier : false;
+        return tier ? tier : null;
     }
 
     /**

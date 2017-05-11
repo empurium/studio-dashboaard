@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
@@ -17,6 +17,8 @@ import {
     Tier,
 } from '@freescan/skeleton';
 
+import { TierResourceComponent } from '../tier-resource/tier-resource.component';
+
 
 @Component({
     selector:      'pstudio-article',
@@ -25,7 +27,10 @@ import {
     encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit {
-    public tier: Tier;
+    @ViewChild('form') public form: NgForm;
+    @ViewChild('articleTier') public articleTier: TierResourceComponent;
+
+    public tier: Tier|null;
     public people: Person[];
     public article: Article        = new Article();
     public loading: boolean        = true;
@@ -87,9 +92,9 @@ export class ArticleComponent implements OnInit {
     /**
      * Either POST a new article or PUT the new contents.
      */
-    public store(form: NgForm): void {
+    public store(): void {
         this.saving = true;
-        this.overwrite(form.form.value);
+        this.overwrite(this.form.form.value);
         this.setPublishedAt(this.article.published_at);
 
         if (!this.article.id) {
@@ -128,14 +133,9 @@ export class ArticleComponent implements OnInit {
     /**
      * Change the Tier when the TierResourceComponent emits the event.
      */
-    public handleTierChange(tier: Tier): void {
-        let former: Tier = this.tier;
+    public handleTierChange(tier: Tier|null): void {
         this.tier = tier;
         this.article.tier_ids = tier && tier.id ? [tier.id] : null;
-
-        if (former && former !== this.tier) {
-            this.alerts.info('Remember to save!', 'Your Visibility options must be saved to the Article as well.');
-        }
     }
 
     /**
@@ -206,6 +206,7 @@ export class ArticleComponent implements OnInit {
             .subscribe(
                 (response: ArticleResponse) => {
                     this.alerts.success(null, 'Article has been saved.');
+                    this.articleTier.storeEvent.emit(this.tier);
                 },
                 (error: any) => this.alerts.errorMessage(error),
             );
