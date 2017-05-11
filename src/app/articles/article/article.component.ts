@@ -129,7 +129,13 @@ export class ArticleComponent implements OnInit {
      * Change the Tier when the TierResourceComponent emits the event.
      */
     public handleTierChange(tier: Tier): void {
+        let former: Tier = this.tier;
         this.tier = tier;
+        this.article.tier_ids = tier && tier.id ? [tier.id] : null;
+
+        if (former && former !== this.tier) {
+            this.alerts.info('Remember to save!', 'Your Visibility options must be saved to the Article as well.');
+        }
     }
 
     /**
