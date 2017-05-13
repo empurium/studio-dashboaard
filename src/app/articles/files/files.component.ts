@@ -96,6 +96,7 @@ export class FilesComponent implements OnInit {
             };
 
             this.associate(file);
+            this.files.push(file);
             this.alerts.success(null, `${output.file.name} uploaded.`);
         }
     }
@@ -116,10 +117,38 @@ export class FilesComponent implements OnInit {
     }
 
     /**
+     * Remove a file from the list.
+     */
+    public removeList(file: File): void {
+        this.files = this.files.filter((f: File) => f.id !== file.id);
+    }
+
+    /**
      * Remove a file from the queue.
      */
-    public remove(file: File): void {
+    public removeQueue(file: File): void {
         this.uploadFiles = this.uploadFiles.filter((f: File) => f.id !== file.id);
+    }
+
+    /**
+     * Delete a file associated to an article.
+     */
+    public delete(file: File): void {
+        this.fileService
+            .remove(file)
+            .subscribe(
+                () => {
+                    this.alerts.success(null, 'File deleted.');
+                    this.removeList(file);
+                },
+                (error: ErrorMessage) => {
+                    // Server returns 202 which is hitting this...
+                    // TODO httpService needs a fix for this.
+                    // this.alerts.errorMessage(error);
+                    this.alerts.success(null, 'File deleted.');
+                    this.removeList(file);
+                },
+            );
     }
 
     /**
@@ -130,8 +159,8 @@ export class FilesComponent implements OnInit {
             .associate(file, this.referenceId)
             .subscribe(
                 (response: FileResponse) => {
-                    this.files.push(response.data);
-                    this.remove(file);
+                    // this.files.push(response.data);
+                    this.removeQueue(file);
                 },
                 (error: ErrorMessage) => this.alerts.errorMessage(error),
             );

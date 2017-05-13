@@ -3,11 +3,19 @@
         <div class="card animated fadeIn">
             <div class="card-block">
                 <h4>Files for this publication</h4>
+                <p>
+                    <b>Note:</b>
+                    When you initially upload an image, it will be added to this list with the
+                    filename directly attached to it (ending with <b>.jpg</b> for example).<br />
+                    Please copy this filename to insert images into your articles. If you refresh
+                    the page, this URL will change. We will be improving this process soon.
+                </p>
 
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Thumbnail URL</th>
+                        <th>File URL</th>
+                        <!--<th>Thumbnail URL</th>-->
                         <th>Display Name</th>
                         <th>Visibility</th>
                         <th>&nbsp;</th>
@@ -16,17 +24,26 @@
                     <tbody>
                     <tr *ngFor="let file of files">
                         <td>
-                            <img *ngIf="file.thumbnail_url" [src]="file.thumbnail_url" class="thumbnail" />
-                            <input *ngIf="!file.thumbnail_url" [(ngModel)]="file.thumbnail_url" name="thumbnail_url" type="text" class="form-control" />
+                            <a [href]="file.url" target="_blank">{{ file.url }}</a>
                         </td>
+                        <!--
+                        <td class="text-center">
+                            <input [(ngModel)]="file.thumbnail_url" name="thumbnail_url" type="text" class="form-control" />
+                            <img *ngIf="file.thumbnail_url" [src]="file.thumbnail_url" class="thumbnail" />
+                        </td>
+                        -->
                         <td>
                             <input [(ngModel)]="file.display_name" name="display_name" type="text" class="form-control" />
                         </td>
-                        <td>
-                            <pstudio-tier-resource [referenceId]="file.id"></pstudio-tier-resource>
+                        <td class="text-center">
+                            Public
+                            <!--<pstudio-tier-resource [referenceId]="file.id"></pstudio-tier-resource>-->
                         </td>
                         <td class="text-right">
-                            <button (click)="store(file)" [disabled]="true" class="btn btn-secondary btn-pointer">
+                            <button (click)="delete(file)" type="button" class="btn btn-outline-danger btn-sm btn-pointer">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                            <button (click)="store(file)" type="button" [disabled]="true" class="btn btn-secondary btn-sm btn-pointer">
                                 Save
                             </button>
                         </td>
@@ -47,25 +64,27 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>&nbsp;</th>
                         <th>File Name</th>
                         <th>Display Name</th>
-                        <th>Thumbnail URL</th>
+                        <!--<th>Thumbnail URL</th>-->
+                        <th>&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let file of uploadFiles">
-                        <td>
-                            <button (click)="remove(file)" class="btn btn-sm btn-outline-danger btn-pointer">
-                                <i class="fa fa-remove"></i>
-                            </button>
-                        </td>
                         <td><strong>{{ file.name }}</strong></td>
                         <td>
                             <input [(ngModel)]="file.display_name" name="display_name" type="text" class="form-control" />
                         </td>
+                        <!--
                         <td>
                             <input [(ngModel)]="file.thumbnail_url" name="thumbnail_url" type="text" class="form-control" />
+                        </td>
+                        -->
+                        <td>
+                            <button (click)="removeQueue(file)" class="btn btn-sm btn-outline-danger btn-pointer">
+                                <i class="fa fa-remove"></i>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
