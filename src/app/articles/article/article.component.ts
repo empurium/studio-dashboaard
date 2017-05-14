@@ -216,7 +216,10 @@ export class ArticleComponent implements OnInit {
      * Overwrites the values from the form to the Article model for submission.
      */
     private overwrite(values: Article): void {
-        this.article.content = this.ckeditorContent;
+        // CKEditor loves to use nbsp and force extremely
+        // long lines of text thereby breaking styles
+        this.article.content = this.ckeditorContent.replace(/&nbsp;/g, ' ');
+
         _.each(values, (value: any, key: string) => {
             this.article[key] = value;
         });
