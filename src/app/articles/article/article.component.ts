@@ -37,7 +37,10 @@ export class ArticleComponent implements OnInit {
     public saving: boolean         = false;
     public momentPublished: any    = moment();
     public ckeditorContent: string = '';
-    public ckeditorConfig: any     = {
+
+    // CKEditor configuration
+    public ckeditorConfig: CKEDITOR.config = {
+        disallowedContent: '*{width,height}',
         height: '450px',
     };
 
