@@ -36,12 +36,37 @@ export class ArticleComponent implements OnInit {
     public loading: boolean        = true;
     public saving: boolean         = false;
     public momentPublished: any    = moment();
+    public ckeditorPreview: string = '';
     public ckeditorContent: string = '';
 
     // CKEditor configuration
     public ckeditorConfig: CKEDITOR.config = {
+        extraPlugins:      'divarea',
         disallowedContent: '*{width,height}',
-        height: '450px',
+        height:            '450px',
+        removePlugins:     'about,save,newpage,print,forms,filebrowser,language,bidi',
+    };
+    public ckeditorPreviewConfig: CKEDITOR.config = {
+        extraPlugins:      'divarea',
+        disallowedContent: '*{width,height}',
+        height:            '175px',
+        plugins:           [
+            'sourcearea',
+            'resize',
+            'justify',
+            'contextmenu',
+            'basicstyles',
+            'clipboard',
+            'toolbar',
+            'enterkey',
+            'entities',
+            'floatingspace',
+            'wysiwygarea',
+            'indentlist',
+            'link',
+            'list',
+            'undo',
+        ].join(),
     };
 
     constructor(private route: ActivatedRoute,
@@ -70,6 +95,7 @@ export class ArticleComponent implements OnInit {
                 (response: ArticleResponse) => {
                     this.loading         = false;
                     this.article         = response.data;
+                    this.ckeditorPreview = this.article.preview;
                     this.ckeditorContent = this.article.content;
                     this.setMomentPublished();
                 },
@@ -220,6 +246,7 @@ export class ArticleComponent implements OnInit {
      */
     private overwrite(values: Article): void {
         this.article.content = this.contentReplace(this.ckeditorContent);
+        this.article.preview = this.contentReplace(this.ckeditorPreview);
 
         _.each(values, (value: any, key: string) => {
             this.article[key] = value;
