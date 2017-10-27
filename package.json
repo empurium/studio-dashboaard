@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host studio.720global.local --port 5001",
+    "start": "ng serve --host studio.720global.test --port 5001",
     "build": "ng build",
     "build:staging": "ng build -e staging -t production --aot=false",
     "build:prod": "ng build -e prod -t production --aot=false",

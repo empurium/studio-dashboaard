@@ -12,17 +12,17 @@ const env: Environment = {
 
     // API URL's
     api: {
-        passport:     'http://passport.publication.studio.local',
-        vinyl:        'http://vinyl.publication.studio.local',
-        cashier:      'http://cashier.publication.studio.local',
-        files:        'http://files.publication.studio.local',
-        publications: 'http://publication.publication.studio.local',
+        passport:     'http://passport.publication.studio.test',
+        vinyl:        'http://vinyl.publication.studio.test',
+        cashier:      'http://cashier.publication.studio.test',
+        files:        'http://files.publication.studio.test',
+        publications: 'http://publication.publication.studio.test',
     },
 
     passport: {
-        login:       'http://passport.publication.studio.local/authorize',
+        login:       'http://passport.publication.studio.test/authorize',
         clientId:    '4',
-        redirectURI: 'http://publication.studio.local:5001',
+        redirectURI: 'http://publication.studio.test:5001',
         scope:       '',
     },
 };
