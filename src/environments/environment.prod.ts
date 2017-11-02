@@ -1,4 +1,4 @@
-import { Environment, VinylService, PassportData } from '@freescan/skeleton';
+import { Environment, VinylService, PassportData } from '@rndstudio/skeleton';
 
 // VinylService determines our domain so that we can
 // host anybody on studio.company.com and hit the correct API's

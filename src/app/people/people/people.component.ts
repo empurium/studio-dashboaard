@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService, Person, PeopleService, PeopleResponse } from '@freescan/skeleton';
+import { AlertService, Person, PeopleService, PeopleResponse } from '@rndstudio/skeleton';
 
 
 @Component({

@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { ErrorMessage } from '@freescan/http';
+import { ErrorMessage } from '@rndstudio/http';
 import {
     AuthenticationService,
     AlertService,
@@ -15,7 +15,7 @@ import {
     ArticleService,
     ArticleResponse,
     Tier,
-} from '@freescan/skeleton';
+} from '@rndstudio/skeleton';
 
 import { TierResourceComponent } from '../tier-resource/tier-resource.component';
 

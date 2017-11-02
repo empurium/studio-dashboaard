@@ -6,7 +6,7 @@ import {
     TierService,
     TierResource,
     TierResourceService,
-} from '@freescan/skeleton';
+} from '@rndstudio/skeleton';
 
 
 @Component({

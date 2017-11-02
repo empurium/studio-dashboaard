@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardComponent, Navigation } from '@freescan/skeleton';
+import { DashboardComponent, Navigation } from '@rndstudio/skeleton';
 
 
 @Component({

@@ -9,7 +9,7 @@ import {
     Person,
     PersonResponse,
     PeopleResponse,
-} from '@freescan/skeleton';
+} from '@rndstudio/skeleton';
 
 
 @Component({

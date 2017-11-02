@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { StudioModule } from '@freescan/skeleton';
+import { StudioModule } from '@rndstudio/skeleton';
 
 // Core
 import { PeopleRoutingModule } from './people.routing';

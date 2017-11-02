@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
-import { ErrorMessage } from '@freescan/http';
+import { ErrorMessage } from '@rndstudio/http';
 import {
     AuthenticationService,
     AlertService,
     FileService,
     FileResponse,
     File,
-} from '@freescan/skeleton';
+} from '@rndstudio/skeleton';
 
 import { environment } from '@env/environment';
 

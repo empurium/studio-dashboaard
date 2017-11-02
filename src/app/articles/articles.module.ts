@@ -5,7 +5,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { MomentModule } from 'angular2-moment';
 import { NgUploaderModule } from 'ngx-uploader';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { StudioModule } from '@freescan/skeleton';
+import { StudioModule } from '@rndstudio/skeleton';
 
 // Core
 import { ArticlesRoutingModule } from './articles.routing';

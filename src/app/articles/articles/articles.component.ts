@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
-import { AlertService, ArticleService, Article, ArticlesResponse } from '@freescan/skeleton';
+import { AlertService, ArticleService, Article, ArticlesResponse } from '@rndstudio/skeleton';
 
 
 @Component({
