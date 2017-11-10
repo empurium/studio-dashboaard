@@ -104,7 +104,7 @@
       "always"
     ],
     "switch-default": true,
-    "ter-indent": [true, 4],
+    "ter-indent": [false, 4],
     "trailing-comma": [
       true,
       {
